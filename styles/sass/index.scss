@@ -1,4 +1,7 @@
-@import "./componnets/header";
-@import "./componnets/filters";
-@import "./componnets/recipes";
 @import "./utils/variables";
+@import "./utils/reset";
+@import "./utils/general";
+@import "./components/search";
+@import "./components/header";
+@import "./components/filters";
+@import "./components/recipes";

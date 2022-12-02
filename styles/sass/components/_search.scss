@@ -1,0 +1,27 @@
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--grey-1);
+    border-radius: 5px;
+    input {
+        background-color: var(--grey-1);
+        border: none;
+        padding: 1.5rem;
+        border-radius: 5px;
+        width: 95%;
+        outline: none;
+    }
+    .form-loupe-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1rem;
+        button {
+            border: none;
+            background-color: var(--grey-1);
+            cursor: pointer;
+        }
+    }
+}

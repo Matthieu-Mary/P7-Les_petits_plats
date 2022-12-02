@@ -1,0 +1,13 @@
+header {
+    color: var(--header-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 2rem 1rem;
+    h1 {
+        font-size: 36px;
+        font-family: var(--font-dm);
+        font-weight: 700;
+    }
+}
