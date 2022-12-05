@@ -7,7 +7,7 @@
   --grey-2: #C7BEBE;
   --font-dm: "DM Sans", sans-serif;
   --font-lato: "Lato", sans-serif;
-  --font-family: "Roboto", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
 }
 
 * {
@@ -19,6 +19,10 @@
 body {
   width: 90%;
   margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .search {
@@ -67,11 +71,61 @@ header h1 {
   margin: 1rem 0;
 }
 .filters .container-buttons-filters {
+  display: flex;
   margin: 1rem 0;
 }
-.filters .container-buttons-filters button {
+.filters .container-buttons-filters .filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-right: 1rem;
-  padding: 1rem;
+  width: 170px;
+  height: 70px;
+}
+.filters .container-buttons-filters .filter:nth-child(2) {
+  margin-left: 1rem;
+}
+.filters .container-buttons-filters .filter:nth-child(3) {
+  margin-left: 1rem;
+}
+.filters .container-buttons-filters input {
+  width: 130px;
+  height: 100%;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+.filters .container-buttons-filters input::placeholder {
+  color: white;
+  border: none;
+  font-family: var(--font-lato);
+  font-size: 18px;
+  font-weight: 700;
+}
+.filters .container-buttons-filters .ingredients input, .filters .container-buttons-filters .ingredients button {
+  background-color: var(--blue);
+}
+.filters .container-buttons-filters .appliances input, .filters .container-buttons-filters .appliances button {
+  background-color: var(--green);
+}
+.filters .container-buttons-filters .ustensils input, .filters .container-buttons-filters .ustensils button {
+  background-color: var(--orange);
+}
+.filters .container-buttons-filters .open-filter-list {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters .container-buttons-filters .open-filter-list button {
+  border-radius: 0 5px 5px 0;
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+.filters .container-buttons-filters .open-filter-list button img {
+  transform: rotate(180deg);
 }
 
 .recipes {
@@ -84,7 +138,6 @@ header h1 {
   margin: 0 auto;
   width: 100%;
   height: 370px;
-  border: 1px solid red;
   border-radius: 5px;
 }
 .recipes .card .fake-image {
@@ -97,6 +150,8 @@ header h1 {
   padding: 1rem;
   width: 100%;
   height: 50%;
+  background-color: var(--grey-1);
+  border-radius: 0 0 5px 5px;
 }
 .recipes .card .card-infos .container-title-time {
   display: flex;
@@ -121,6 +176,38 @@ header h1 {
   font-weight: 700;
   font-size: 18px;
   white-space: nowrap;
+}
+.recipes .card .card-infos .container-list-desc {
+  margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  height: 185px;
+}
+.recipes .card .card-infos .container-list-desc .ingredients-list {
+  width: 48%;
+  height: 110px;
+  font-family: var(--font-lato);
+  overflow: hidden;
+}
+.recipes .card .card-infos .container-list-desc .ingredients-list li {
+  line-height: 14px;
+}
+.recipes .card .card-infos .container-list-desc .ingredients-list li .ingredient-name {
+  font-weight: 700;
+  font-size: 12px;
+}
+.recipes .card .card-infos .container-list-desc .ingredients-list li .ingredient-value {
+  font-weight: 400;
+  font-size: 12px;
+}
+.recipes .card .card-infos .container-list-desc .description {
+  width: 50%;
+  height: 110px;
+  font-family: var(--font-roboto);
+  font-size: 12px;
+  line-height: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=style.css.map */

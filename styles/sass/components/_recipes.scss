@@ -7,7 +7,6 @@
         margin: 0 auto;
         width: 100%;
         height: 370px;
-        border: 1px solid red;
         border-radius: 5px;
         .fake-image {
             width: 100%;
@@ -19,6 +18,8 @@
             padding: 1rem;
             width: 100%;
             height: 50%;
+            background-color: var(--grey-1);
+            border-radius: 0 0 5px 5px;
             .container-title-time {
                 display: flex;
                 justify-content: space-between;
@@ -41,6 +42,38 @@
                         font-size: 18px;
                         white-space: nowrap;
                     }
+                }
+            }
+            .container-list-desc {
+                margin-top: 1rem;
+                display: flex;
+                width: 100%;
+                height: 185px;
+                .ingredients-list {
+                    width: 48%;
+                    height: 110px;
+                    font-family: var(--font-lato);
+                    overflow: hidden;
+                    li {
+                        line-height: 14px;
+                        .ingredient-name {
+                            font-weight: 700;
+                            font-size: 12px;
+                        }
+                        .ingredient-value {
+                            font-weight: 400;
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .description {
+                    width: 50%;
+                    height: 110px;
+                    font-family: var(--font-roboto);
+                    font-size: 12px;
+                    line-height: 12px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }

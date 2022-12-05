@@ -9,7 +9,8 @@ displayRecipes();
 function createCard(recipe) {
     const cardContainer = document.querySelector(".recipes");
     const { id, name, servings, ingredients, time, description, appliance, ustensils } = recipe;
-
+    
+    console.log(ingredients)
     const card = document.createElement("article");
     card.classList.add("card");
 
@@ -33,9 +34,24 @@ function createCard(recipe) {
     const containerListAndDesc = document.createElement("div");
     containerListAndDesc.classList.add("container-list-desc");
     const ingredientsList = document.createElement("ul");
-    // >>> A REVOIR <<<
-    ingredientsList.textContent = ingredients[0].ingredient;
+    ingredientsList.classList.add("ingredients-list");
+    ingredients.forEach(ingredient => {
+        const recipeIngredient = document.createElement('li');
+        const ingredientName = document.createElement("span");
+        ingredientName.classList.add("ingredient-name")
+        ingredientName.textContent = `${ingredient.ingredient} : `;
+        recipeIngredient.appendChild(ingredientName);
+        ingredientsList.appendChild(recipeIngredient);
+        const ingredientValue = document.createElement("span");
+        ingredientValue.classList.add("ingredient-value");
+        const ingredientQuantity = ingredient.quantity ? ingredient.quantity : "";
+        const ingredientUnit = ingredient.unit ? ingredient.unit : "";
+        ingredientValue.textContent = `${ingredientQuantity} ${ingredientUnit}`;
+        recipeIngredient.appendChild(ingredientValue);
+    })
+
     const cardDescription = document.createElement("p")
+    cardDescription.classList.add("description")
     cardDescription.textContent = description;
 
     cardTimeContainer.appendChild(cardTimeImage);
