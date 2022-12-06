@@ -1,5 +1,3 @@
-let allRecipes;
-
 async function getRecipes() {
     const response = await fetch("../data/recipes.json")
     .then(res => res.json())
@@ -9,8 +7,5 @@ async function getRecipes() {
     })
     .catch(err => console.log(err))
 
-    allRecipes = [...response]
     return response
 }
-
-
