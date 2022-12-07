@@ -1,36 +1,49 @@
 const cardContainer = document.querySelector(".recipes");
 let allRecipes;
 
+// Ingredients
+let allIngredients = [];
+let allUniquesIngredients = [...new Set(allIngredients)]
+
+// Appliances
+let allAppliances = [];
+
+// Ustensils
+let allUstensils = [];
+
 async function initRecipes() {
   const recipes = await getRecipes();
-  allRecipes = [...recipes]
-  createCard(recipes)
+  allRecipes = [...recipes];
+  createCard(recipes);
 }
 initRecipes();
 
 function createCard(recipes) {
-  
-  recipes.forEach(recipe => {
-        const {
-            id,
-            name,
-            servings,
-            ingredients,
-            time,
-        description,
-        appliance,
-        ustensils,
+  recipes.forEach((recipe) => {
+    const {
+      name,
+      ingredients,
+      time,
+      description,
+      appliance,
+      ustensils,
     } = recipe;
+
+    // PUSH TO APPLIANCES ARR
+    allAppliances.push(appliance);
+    // PUSH TO USTENSILS ARR
+    ustensils.forEach(ustensil => allUstensils.push(ustensil))
+    
 
     const card = document.createElement("article");
     card.classList.add("card");
-    
+
     const fakeImage = document.createElement("div");
     fakeImage.classList.add("fake-image");
-    
+
     const cardInfos = document.createElement("div");
     cardInfos.classList.add("card-infos");
-    
+
     const containerTitleAndTime = document.createElement("div");
     containerTitleAndTime.classList.add("container-title-time");
     const cardTitle = document.createElement("h2");
@@ -46,24 +59,27 @@ function createCard(recipes) {
     const ingredientsList = document.createElement("ul");
     ingredientsList.classList.add("ingredients-list");
     ingredients.forEach((ingredient) => {
-        const recipeIngredient = document.createElement("li");
-        const ingredientName = document.createElement("span");
-        ingredientName.classList.add("ingredient-name");
-        ingredientName.textContent = `${ingredient.ingredient} : `;
-        recipeIngredient.appendChild(ingredientName);
-        ingredientsList.appendChild(recipeIngredient);
-        const ingredientValue = document.createElement("span");
-        ingredientValue.classList.add("ingredient-value");
-        const ingredientQuantity = ingredient.quantity ? ingredient.quantity : "";
-        const ingredientUnit = ingredient.unit ? ingredient.unit : "";
-        ingredientValue.textContent = `${ingredientQuantity} ${ingredientUnit}`;
-        recipeIngredient.appendChild(ingredientValue);
+      // PUSH TO INGREDIENTS ARR------
+      allIngredients.push(ingredient.ingredient)
+      // -----------------------------
+      const recipeIngredient = document.createElement("li");
+      const ingredientName = document.createElement("span");
+      ingredientName.classList.add("ingredient-name");
+      ingredientName.textContent = `${ingredient.ingredient} : `;
+      recipeIngredient.appendChild(ingredientName);
+      ingredientsList.appendChild(recipeIngredient);
+      const ingredientValue = document.createElement("span");
+      ingredientValue.classList.add("ingredient-value");
+      const ingredientQuantity = ingredient.quantity ? ingredient.quantity : "";
+      const ingredientUnit = ingredient.unit ? ingredient.unit : "";
+      ingredientValue.textContent = `${ingredientQuantity} ${ingredientUnit}`;
+      recipeIngredient.appendChild(ingredientValue);
     });
-    
+
     const cardDescription = document.createElement("p");
     cardDescription.classList.add("description");
     cardDescription.textContent = description;
-    
+
     cardTimeContainer.appendChild(cardTimeImage);
     cardTimeContainer.appendChild(cardTime);
     containerTitleAndTime.appendChild(cardTitle);
@@ -75,27 +91,25 @@ function createCard(recipes) {
     card.appendChild(fakeImage);
     card.appendChild(cardInfos);
     cardContainer.appendChild(card);
-
-  }) 
-
-
-
+  });
 }
 
 // ----- FILTER RECIPES -----
 const search = document.querySelector("#search input");
-search.addEventListener("input",filterRecipes);
+search.addEventListener("input", filterRecipes);
 
 async function filterRecipes(e) {
+  cardContainer.innerHTML = "";
 
-    cardContainer.innerHTML = "";
-    
-    const searchedRecipe = e.target.value.toLowerCase().trim();
-    console.log(searchedRecipe)
-    
-    const filteredRecipes = allRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchedRecipe));
+  const searchedRecipe = e.target.value.toLowerCase().trim();
 
-    createCard(filteredRecipes)
+  // Filter by name, description and ingredients
+  const filteredRecipes = allRecipes.filter(
+    (recipe) =>
+      recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
+      recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
+      recipe.ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().trim().includes(searchedRecipe))
+  );
 
+  createCard(filteredRecipes);
 }
-

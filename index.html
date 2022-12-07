@@ -1,65 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Les petits plats</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <header>
-        <img src="./assets/images/logo.svg" alt="logo les petits plats">
-        <h1>Les petits plats</h1>
+      <img src="./assets/images/logo.svg" alt="logo les petits plats" />
+      <h1>Les petits plats</h1>
     </header>
 
     <main>
+      <form id="search">
+        <input type="text" placeholder="Rechercher une recette" />
+        <div class="form-loupe-container">
+          <button>
+            <img src="./assets/images/loupe.svg" alt="search" />
+          </button>
+        </div>
+      </form>
 
-        <form id="search">
-            <input type="text" placeholder="Rechercher une recette">
-            <div class="form-loupe-container">
-                <button>
-                    <img src="./assets/images/loupe.svg" alt="search">
-                </button>
+      <section class="filters">
+        <div class="container-selected-filters">
+          ici se trouvera les filtres sélectionnés
+        </div>
+
+        <div class="container-buttons-filters">
+          <div class="filter ingredients" onmousedown="dropdownListOpen(event)">
+            <input type="text" placeholder="Ingredients" oninput="getDropdownList()" />
+            <div class="open-filter-list">
+              <button onclick="dropdownListToggle(event)">
+                <img
+                  src="./assets/images/chevron.svg"
+                  alt="chevron dropdown list"
+                />
+              </button>
             </div>
-        </form>
+            <div class="filter-list"></div>
+          </div>
 
-        <section class="filters">
-            <div class="container-selected-filters">ici se trouvera les filtres sélectionnés</div>
-            <div class="container-buttons-filters">
-                <div class="filter ingredients">
-                    <input type="text" placeholder="Ingredients">
-                    <div class="open-filter-list">
-                        <button><img src="./assets/images/chevron.svg" alt="chevron dropdown list"></button>
-                    </div>
-                </div>
-                <div class="filter appliances">
-                    <input type="text" placeholder="Appareils">
-                    <div class="open-filter-list">
-                        <button><img src="./assets/images/chevron.svg" alt="chevron dropdown list"></button>
-                    </div>
-                </div>
-                <div class="filter ustensils">
-                    <input type="text" placeholder="Ustensils">
-                    <div class="open-filter-list">
-                        <button><img src="./assets/images/chevron.svg" alt="chevron dropdown list"></button>
-                    </div>
-                </div>
+          <div class="filter appliances" onmousedown="dropdownListOpen(event)">
+            <input type="text" placeholder="Appareils" oninput="getDropdownList()" />
+            <div class="open-filter-list">
+              <button onclick="dropdownListToggle(event)">
+                <img
+                  src="./assets/images/chevron.svg"
+                  alt="chevron dropdown list"
+                />
+              </button>
             </div>
-        </section>
+            <div class="filter-list"></div>
+          </div>
 
-        <section class="recipes"></section>
+          <div class="filter ustensils" onmousedown="dropdownListOpen(event)">
+            <input type="text" placeholder="Ustensils" oninput="getDropdownList()" />
+            <div class="open-filter-list">
+              <button onclick="dropdownListToggle(event)">
+                <img
+                  src="./assets/images/chevron.svg"
+                  alt="chevron dropdown list"
+                />
+              </button>
+            </div>
+            <div class="filter-list"></div>
+          </div>
+        </div>
+      </section>
 
+      <section class="recipes"></section>
     </main>
 
     <!-- API -->
     <script src="./scripts/api/api.js"></script>
 
+    <!-- FILTERS -->
+    <script src="./scripts/filters/dropdown.js"></script>
+
     <!-- FACTORY -->
     <script src="./scripts/factory/displayRecipes.js"></script>
-
-</body>
+  </body>
 </html>

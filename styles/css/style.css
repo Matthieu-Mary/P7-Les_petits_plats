@@ -75,6 +75,7 @@ header h1 {
   margin: 1rem 0;
 }
 .filters .container-buttons-filters .filter {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,9 +92,10 @@ header h1 {
 .filters .container-buttons-filters input {
   width: 130px;
   height: 100%;
-  padding: 5px 20px;
+  padding: 5px 15px;
   border: none;
   border-radius: 5px 0 0 5px;
+  outline: none;
 }
 .filters .container-buttons-filters input::placeholder {
   color: white;
@@ -123,9 +125,56 @@ header h1 {
   border: none;
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 .filters .container-buttons-filters .open-filter-list button img {
   transform: rotate(180deg);
+}
+.filters .container-buttons-filters .ingredients .filter-list {
+  background-color: var(--blue);
+}
+.filters .container-buttons-filters .appliances .filter-list {
+  background-color: var(--green);
+}
+.filters .container-buttons-filters .ustensils .filter-list {
+  background-color: var(--orange);
+}
+.filters .container-buttons-filters .filter-list {
+  position: absolute;
+  top: calc(100% - 1px);
+  z-index: 2;
+  color: white;
+  font-size: 18px;
+  line-height: 22px;
+  border-radius: 0 0 5px 5px;
+  display: none;
+  width: 650px;
+}
+.filters .container-buttons-filters .filter-list ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.filters .container-buttons-filters .filter-list ul li {
+  display: flex;
+  margin-left: 10px;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+.filters .container-buttons-filters .dropdown-open {
+  width: 650px;
+  border: 5px solid red;
+}
+.filters .container-buttons-filters .dropdown-open input {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+}
+.filters .container-buttons-filters .dropdown-open button img {
+  transform: rotate(0deg);
+}
+.filters .container-buttons-filters .dropdown-open .filter-list {
+  display: flex;
 }
 
 .recipes {
