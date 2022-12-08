@@ -1,21 +1,39 @@
 function dropdownListToggle(e) {
     const currentFilter = e.currentTarget.parentNode.parentNode;
-    if(currentFilter.classList.contains("dropdown-open")) {
-        dropdownListClose(currentFilter);
+    if(!currentFilter.classList.contains("dropdown-open")) {
+        currentFilter.classList.add("dropdown-open");
     } else {
-        currentFilter.classList.add("dropdown-open")
-    }
+        dropdownListClose();
+
+     }
 }
 
 function dropdownListOpen(e) {
     const currentFilter = e.currentTarget;
-    currentFilter.classList.add("dropdown-open");
+    if(!currentFilter.classList.contains("dropdown-open")) {
+        dropdownListClose();
+        currentFilter.classList.add("dropdown-open");
+        createDropdownList(currentFilter)
+    } 
+}
 
+// Close filters list
+function dropdownListClose() {
+    const dropdownActuallyOpen = document.querySelectorAll(".dropdown-open");
+    for (let i = 0; i < dropdownActuallyOpen.length; i++) {
+        dropdownActuallyOpen[i].classList.remove("dropdown-open");
+    }
+}
+
+function createDropdownList(currentFilter) {   
+    console.log("creation")
     // Display ingredients list
+    const dropdownIngredientsList = document.querySelector(".ingredients .filter-list");
     if (currentFilter.classList.contains("ingredients")) {
-        const dropdownIngredientsList = document.querySelector(".ingredients .filter-list");
         const ul = document.createElement('ul');    
-        allIngredients.forEach(ingredient => {
+        allIngredients
+        .filter((ingredient, index) => allIngredients.indexOf(ingredient) === index)
+        .forEach(ingredient => {
             const item = document.createElement("li");
             item.textContent = ingredient;
             ul.appendChild(item);
@@ -24,48 +42,44 @@ function dropdownListOpen(e) {
     }
 
     // Display appliances list
+    const dropdownAppliancesList = document.querySelector(".appliances .filter-list");
     if (currentFilter.classList.contains("appliances")) {
-        const dropdownIngredientsList = document.querySelector(".appliances .filter-list");
         const ul = document.createElement('ul');
-        allAppliances.forEach(appliance => {
+        allAppliances
+        .filter((appliance, index) => allAppliances.indexOf(appliance) === index)
+        .forEach(appliance => {
             const item = document.createElement("li");
             item.textContent = appliance;
             ul.appendChild(item);
         })
-        dropdownIngredientsList.appendChild(ul);
+        dropdownAppliancesList.appendChild(ul);
     }
 
     // Display ustensils list
+    const dropdownUstensilsList = document.querySelector(".ustensils .filter-list");
     if (currentFilter.classList.contains("ustensils")) {
-        const dropdownIngredientsList = document.querySelector(".ustensils .filter-list");
         const ul = document.createElement('ul');
-        allUstensils.forEach(ustensil => {
+        allUstensils
+        .filter((ustensil, index) => allUstensils.indexOf(ustensil) === index)
+        .forEach(ustensil => {
             const item = document.createElement("li");
             item.textContent = ustensil;
             ul.appendChild(item);
         })
-        dropdownIngredientsList.appendChild(ul);
-    }
+        dropdownUstensilsList.appendChild(ul);
+    } 
+
+    dropdownIngredientsList.innerHTML= dropdownAppliancesList.innerHTML= dropdownUstensilsList.innerHTML= "";
+
 }
 
-function dropdownListClose(currentFilter) {
-    currentFilter.classList.remove("dropdown-open");
-    const list = currentFilter.querySelector('.filter-list');
-    list.innerHTML = "";
-}
+// function getDropdownList() {
 
-function createDropdownListItems() {
-    console.log("Ici la liste des items")
-}
+//     const ingredientsList = document.querySelector(".ingredients .dropdown-filters");
+//     const appliancesList = document.querySelector(".appliances .dropdown-filters");
+//     const ustensilsList = document.querySelector(".ustensils .dropdown-filters");
+//     console.log("dans liste")
+// }
 
-function getDropdownList() {
-    const ingredientsList = document.querySelector(".ingredients .dropdown-filters");
-    const appliancesList = document.querySelector(".appliances .dropdown-filters");
-    const ustensilsList = document.querySelector(".ustensils .dropdown-filters");
-    console.log("dans liste")
-}
-
-
-// setTimeout(() => console.log(allUstensils), 100)
 
 

@@ -70,7 +70,7 @@
         }
         .filter-list {
             position: absolute;
-            top: calc(100% - 1px);
+            top: calc(100% - 5px);
             z-index: 2;
             color: white;
             font-size: 18px;
@@ -84,14 +84,16 @@
                 li {
                     display: flex;
                     margin-left: 10px;
-                    padding: 0.7rem;
+                    padding: 0.5rem;
                     cursor: pointer;
+                    &:hover {
+                        opacity: 0.75;
+                    }
                 }
             }
         }
         .dropdown-open {
             width: 650px;
-            border: 5px solid red;
             input {
                 color: white;
                 font-weight: bold;

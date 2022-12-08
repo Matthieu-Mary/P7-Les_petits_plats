@@ -1,15 +1,13 @@
 const cardContainer = document.querySelector(".recipes");
 let allRecipes;
 
+// GET ALL ARRAYS DISPLAYED BY FLTERS BUTTON AND SORT THEM TO REMOVE DUBBLES
 // Ingredients
-let allIngredients = [];
-let allUniquesIngredients = [...new Set(allIngredients)]
-
+const allIngredients = [];
 // Appliances
-let allAppliances = [];
-
+const allAppliances = [];
 // Ustensils
-let allUstensils = [];
+const allUstensils = [];
 
 async function initRecipes() {
   const recipes = await getRecipes();
@@ -58,8 +56,9 @@ function createCard(recipes) {
     containerListAndDesc.classList.add("container-list-desc");
     const ingredientsList = document.createElement("ul");
     ingredientsList.classList.add("ingredients-list");
+
     ingredients.forEach((ingredient) => {
-      // PUSH TO INGREDIENTS ARR------
+      // ------ PUSH TO INGREDIENTS ARR ------
       allIngredients.push(ingredient.ingredient)
       // -----------------------------
       const recipeIngredient = document.createElement("li");
@@ -94,7 +93,8 @@ function createCard(recipes) {
   });
 }
 
-// ----- FILTER RECIPES -----
+
+// <----- FILTER RECIPES ----->
 const search = document.querySelector("#search input");
 search.addEventListener("input", filterRecipes);
 
