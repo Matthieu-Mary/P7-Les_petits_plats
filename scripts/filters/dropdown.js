@@ -32,6 +32,7 @@ function createDropdownList() {
         .filter((ingredient, index) => allIngredients.indexOf(ingredient) === index)
         .forEach(ingredient => {
             const item = document.createElement("li");
+            item.setAttribute("onclick", "addFilter(event)")
             item.textContent = ingredient;
             ulIngredients.appendChild(item);
         })
@@ -44,6 +45,7 @@ function createDropdownList() {
         .filter((appliance, index) => allAppliances.indexOf(appliance) === index)
         .forEach(appliance => {
             const item = document.createElement("li");
+            item.setAttribute("onclick", "addFilter(event)")
             item.textContent = appliance;
             ulAppliances.appendChild(item);
         })
@@ -56,15 +58,43 @@ function createDropdownList() {
         .filter((ustensil, index) => allUstensils.indexOf(ustensil) === index)
         .forEach(ustensil => {
             const item = document.createElement("li");
+            item.setAttribute("onclick", "addFilter(event)")
             item.textContent = ustensil;
             ulUstensils.appendChild(item);
         })
         dropdownUstensilsList.appendChild(ulUstensils);
 }
 
-function updateDropdownLists() {
-    console.log("dropdown updated")
+// -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV ---------------------
+function addFilter(e) {
+    const selectedFiltersContainer = document.querySelector(".container-selected-filters");
+    const currentFilter = e.currentTarget;
+    const currentFilterText = currentFilter.textContent;
+    const currentList = currentFilter.parentNode.parentNode.parentNode;
+    const selectedFilter = document.createElement("span");
+    selectedFilter.textContent = currentFilterText;
+    const deleteFilterButton = document.createElement("img");
+    deleteFilterButton.setAttribute("src", "../assets/images/closeBtn.svg");
+    deleteFilterButton.setAttribute("onclick", "deleteFilter(event)");
+    selectedFilter.appendChild(deleteFilterButton)
+
+    // Set color for filters 
+    if(currentList.classList.contains("ingredients")) {
+        selectedFilter.style.background = `var(--blue)`;
+    } else if (currentList.classList.contains("appliances")) {
+        selectedFilter.style.background = `var(--green)`;
+    } else {
+        selectedFilter.style.background = `var(--orange)`;
+    }
+
+    selectedFiltersContainer.appendChild(selectedFilter);
 }
 
+function deleteFilter(e) {
+    const selectedFiltersContainer = document.querySelector(".container-selected-filters");
+    const currentFilter = e.currentTarget.parentNode;
+    selectedFiltersContainer.removeChild(currentFilter);
+}
+// ---------------------------------------------------------------------------------------
 
 

@@ -1,5 +1,24 @@
 .filters {
     margin: 1rem 0;
+    .container-selected-filters {
+        display: flex;
+        span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-left: 10px;
+            color: white;
+            border-radius: 5px;
+            img {
+                margin-left: 10px;
+                cursor: pointer;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
     .container-buttons-filters {
         display: flex;
         margin: 1rem 0;

@@ -70,6 +70,25 @@ header h1 {
 .filters {
   margin: 1rem 0;
 }
+.filters .container-selected-filters {
+  display: flex;
+}
+.filters .container-selected-filters span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-left: 10px;
+  color: white;
+  border-radius: 5px;
+}
+.filters .container-selected-filters span img {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.filters .container-selected-filters span img:hover {
+  transform: scale(1.1);
+}
 .filters .container-buttons-filters {
   display: flex;
   margin: 1rem 0;
