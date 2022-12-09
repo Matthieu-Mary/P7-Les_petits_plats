@@ -10,7 +10,7 @@
   --font-roboto: "Roboto", sans-serif;
 }
 
-* {
+*, ::after, ::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -148,23 +148,27 @@ header h1 {
   line-height: 22px;
   border-radius: 0 0 5px 5px;
   display: none;
-  width: 650px;
+  width: 600px;
 }
 .filters .container-buttons-filters .filter-list ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 200px 200px 200px;
+  overflow: auto;
+  padding-bottom: 10px;
 }
 .filters .container-buttons-filters .filter-list ul li {
-  display: flex;
-  margin-left: 10px;
-  padding: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
 }
 .filters .container-buttons-filters .filter-list ul li:hover {
   opacity: 0.75;
 }
 .filters .container-buttons-filters .dropdown-open {
-  width: 650px;
+  width: 600px;
 }
 .filters .container-buttons-filters .dropdown-open input {
   color: white;
