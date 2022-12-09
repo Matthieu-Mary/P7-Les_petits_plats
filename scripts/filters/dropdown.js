@@ -4,7 +4,6 @@ function dropdownListToggle(e) {
         currentFilter.classList.add("dropdown-open");
     } else {
         dropdownListClose();
-
      }
 }
 
@@ -13,8 +12,7 @@ function dropdownListOpen(e) {
     if(!currentFilter.classList.contains("dropdown-open")) {
         dropdownListClose();
         currentFilter.classList.add("dropdown-open");
-        createDropdownList(currentFilter)
-    } 
+    }
 }
 
 // Close filters list
@@ -25,61 +23,48 @@ function dropdownListClose() {
     }
 }
 
-function createDropdownList(currentFilter) {   
-    console.log("creation")
+function createDropdownList() {   
+
     // Display ingredients list
     const dropdownIngredientsList = document.querySelector(".ingredients .filter-list");
-    if (currentFilter.classList.contains("ingredients")) {
-        const ul = document.createElement('ul');    
+        const ulIngredients = document.createElement('ul');    
         allIngredients
         .filter((ingredient, index) => allIngredients.indexOf(ingredient) === index)
         .forEach(ingredient => {
             const item = document.createElement("li");
             item.textContent = ingredient;
-            ul.appendChild(item);
+            ulIngredients.appendChild(item);
         })
-        dropdownIngredientsList.appendChild(ul);
-    }
+        dropdownIngredientsList.appendChild(ulIngredients);
 
     // Display appliances list
     const dropdownAppliancesList = document.querySelector(".appliances .filter-list");
-    if (currentFilter.classList.contains("appliances")) {
-        const ul = document.createElement('ul');
+        const ulAppliances = document.createElement('ul');
         allAppliances
         .filter((appliance, index) => allAppliances.indexOf(appliance) === index)
         .forEach(appliance => {
             const item = document.createElement("li");
             item.textContent = appliance;
-            ul.appendChild(item);
+            ulAppliances.appendChild(item);
         })
-        dropdownAppliancesList.appendChild(ul);
-    }
+        dropdownAppliancesList.appendChild(ulAppliances);
 
     // Display ustensils list
     const dropdownUstensilsList = document.querySelector(".ustensils .filter-list");
-    if (currentFilter.classList.contains("ustensils")) {
-        const ul = document.createElement('ul');
+        const ulUstensils = document.createElement('ul');
         allUstensils
         .filter((ustensil, index) => allUstensils.indexOf(ustensil) === index)
         .forEach(ustensil => {
             const item = document.createElement("li");
             item.textContent = ustensil;
-            ul.appendChild(item);
+            ulUstensils.appendChild(item);
         })
-        dropdownUstensilsList.appendChild(ul);
-    } 
-
-    dropdownIngredientsList.innerHTML= dropdownAppliancesList.innerHTML= dropdownUstensilsList.innerHTML= "";
-
+        dropdownUstensilsList.appendChild(ulUstensils);
 }
 
-// function getDropdownList() {
-
-//     const ingredientsList = document.querySelector(".ingredients .dropdown-filters");
-//     const appliancesList = document.querySelector(".appliances .dropdown-filters");
-//     const ustensilsList = document.querySelector(".ustensils .dropdown-filters");
-//     console.log("dans liste")
-// }
+function updateDropdownLists() {
+    console.log("dropdown updated")
+}
 
 
 

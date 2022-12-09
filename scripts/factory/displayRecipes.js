@@ -13,6 +13,7 @@ async function initRecipes() {
   const recipes = await getRecipes();
   allRecipes = [...recipes];
   createCard(recipes);
+  createDropdownList();
 }
 initRecipes();
 
