@@ -1,3 +1,4 @@
+// DISPLAY LIST OF FILTERS OR NOT
 function dropdownListToggle(e) {
     const currentFilter = e.currentTarget.parentNode.parentNode;
     if(!currentFilter.classList.contains("dropdown-open")) {
@@ -15,7 +16,6 @@ function dropdownListOpen(e) {
     }
 }
 
-// Close filters list
 function dropdownListClose() {
     const dropdownActuallyOpen = document.querySelectorAll(".dropdown-open");
     for (let i = 0; i < dropdownActuallyOpen.length; i++) {
@@ -23,6 +23,8 @@ function dropdownListClose() {
     }
 }
 
+
+// CREATE LIST OF FILTERS
 function createDropdownList() {   
 
     // Display ingredients list
@@ -32,7 +34,7 @@ function createDropdownList() {
         .filter((ingredient, index) => allIngredients.indexOf(ingredient) === index)
         .forEach(ingredient => {
             const item = document.createElement("li");
-            item.setAttribute("onclick", "addFilter(event)")
+            item.setAttribute("onclick", "addFilterAndUpdate(event)")
             item.textContent = ingredient;
             ulIngredients.appendChild(item);
         })
@@ -45,7 +47,7 @@ function createDropdownList() {
         .filter((appliance, index) => allAppliances.indexOf(appliance) === index)
         .forEach(appliance => {
             const item = document.createElement("li");
-            item.setAttribute("onclick", "addFilter(event)")
+            item.setAttribute("onclick", "addFilterAndUpdate(event)")
             item.textContent = appliance;
             ulAppliances.appendChild(item);
         })
@@ -58,15 +60,17 @@ function createDropdownList() {
         .filter((ustensil, index) => allUstensils.indexOf(ustensil) === index)
         .forEach(ustensil => {
             const item = document.createElement("li");
-            item.setAttribute("onclick", "addFilter(event)")
+            item.setAttribute("onclick", "addFilterAndUpdate(event)")
             item.textContent = ustensil;
             ulUstensils.appendChild(item);
         })
         dropdownUstensilsList.appendChild(ulUstensils);
 }
 
-// -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV ---------------------
-function addFilter(e) {
+// -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV AND UPDATE LIST OF FILTERS AND CARD APPEARANCE---------------------
+function addFilterAndUpdate(e) {
+
+    // Add filter to div
     const selectedFiltersContainer = document.querySelector(".container-selected-filters");
     const currentFilter = e.currentTarget;
     const currentFilterText = currentFilter.textContent;
@@ -86,8 +90,15 @@ function addFilter(e) {
     } else {
         selectedFilter.style.background = `var(--orange)`;
     }
-
     selectedFiltersContainer.appendChild(selectedFilter);
+    
+    // Update filters by filters tags selected
+    
+    console.log(currentFilterText.toLowerCase())
+    allRecipes.forEach(recipe => console.log(recipe.appliance.toLowerCase()));
+
+
+    
 }
 
 function deleteFilter(e) {
