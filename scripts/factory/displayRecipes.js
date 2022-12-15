@@ -20,8 +20,6 @@ function createCard(recipes) {
         ingredients,
         time,
         description,
-        appliance,
-        ustensils,
       } = recipe;
 
       const card = document.createElement("article");
