@@ -1,19 +1,14 @@
 const cardContainer = document.querySelector(".recipes");
 let allRecipes;
 
-// GET ALL ARRAYS DISPLAYED BY FLTERS BUTTON AND SORT THEM TO REMOVE DUBBLES
-// Ingredients
-const allIngredients = [];
-// Appliances
-const allAppliances = [];
-// Ustensils
-const allUstensils = [];
-
 async function initRecipes() {
   const recipes = await getRecipes();
   allRecipes = [...recipes];
+  getIngredients(allRecipes);
+  getAppliances(allRecipes);
+  getUstensils(allRecipes);
   createCard(allRecipes);
-  createDropdownList();
+  createDropdownList(allRecipes);
 }
 initRecipes();
 
@@ -28,14 +23,7 @@ function createCard(recipes) {
         appliance,
         ustensils,
       } = recipe;
-  
-  
-      // PUSH TO APPLIANCES ARR
-      allAppliances.push(appliance);
-      // PUSH TO USTENSILS ARR
-      ustensils.forEach(ustensil => allUstensils.push(ustensil))
-      
-  
+
       const card = document.createElement("article");
       card.classList.add("card");
   
@@ -61,9 +49,7 @@ function createCard(recipes) {
       ingredientsList.classList.add("ingredients-list");
   
       ingredients.forEach((ingredient) => {
-        // ------ PUSH TO INGREDIENTS ARR ------
-        allIngredients.push(ingredient.ingredient)
-        // -----------------------------
+
         const recipeIngredient = document.createElement("li");
         const ingredientName = document.createElement("span");
         ingredientName.classList.add("ingredient-name");
@@ -117,6 +103,7 @@ function filterRecipesBySearchInput(e) {
   // Display message if no recipes found
   if (filteredRecipes.length === 0) {
     const failMessage = document.createElement("h3");
+    failMessage.classList.add("fail-message");
     failMessage.textContent = "Aucune recette ...";
     cardContainer.appendChild(failMessage)
   }
