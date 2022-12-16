@@ -1,6 +1,7 @@
 const cardContainer = document.querySelector(".recipes");
 let allRecipes;
 
+// FIRST RENDER
 async function initRecipes() {
   const recipes = await getRecipes();
   allRecipes = [...recipes];
