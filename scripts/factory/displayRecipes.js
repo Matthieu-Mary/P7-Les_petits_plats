@@ -95,20 +95,20 @@ function filterRecipesBySearchInput(e) {
   dropdownLists.forEach(dropdown => dropdown.innerHTML = "")
   const searchedRecipe = e.target.value.toLowerCase().trim();
   // Filter by name, description and ingredients.
-  allRecipes = allRecipes.filter(
+  const searchResult = allRecipes.filter(
     (recipe) =>
     recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
     recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
     recipe.ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().trim().includes(searchedRecipe))
     );
   // Display message if no recipes found
-  if (allRecipes.length === 0) {
+  if (searchResult.length === 0) {
     const failMessage = document.createElement("h3");
     failMessage.classList.add("fail-message");
     failMessage.textContent = "Aucune recette ...";
-    cardContainer.appendChild(failMessage)
+    cardContainer.appendChild(failMessage);
   }
-  createCard(allRecipes);
-  createDropdownList(allRecipes);
+  createCard(searchResult);
+  createDropdownList(searchResult);
 }
 
