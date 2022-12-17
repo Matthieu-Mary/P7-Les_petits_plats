@@ -3,7 +3,7 @@
 // Updated recipes by click on filter is stored in this variable.
 
 function addFilterAndUpdate(e) {
-  let currentUpdatedRecipes;
+
   // Add filter to div
   const selectedFiltersContainer = document.querySelector(
     ".container-selected-filters"
@@ -26,7 +26,7 @@ function addFilterAndUpdate(e) {
       selectedFiltersContainer.appendChild(selectedFilter);
       cardContainer.innerHTML = "";
       filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-      currentUpdatedRecipes = allRecipes.filter(recipe => {
+      allRecipes = allRecipes.filter(recipe => {
         let hasIngredients = false;
         recipe.ingredients.forEach(ingredient => {
           if(ingredient.ingredient.toLowerCase() === currentFilterText.toLowerCase()) {
@@ -40,7 +40,7 @@ function addFilterAndUpdate(e) {
       selectedFiltersContainer.appendChild(selectedFilter);
       cardContainer.innerHTML = "";
       filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-      currentUpdatedRecipes = allRecipes.filter(
+      allRecipes = allRecipes.filter(
         (recipe) =>
         recipe.appliance.toLowerCase() === currentFilterText.toLowerCase()
         );
@@ -49,7 +49,7 @@ function addFilterAndUpdate(e) {
         selectedFiltersContainer.appendChild(selectedFilter);
         cardContainer.innerHTML = "";
         filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-        currentUpdatedRecipes = allRecipes.filter(recipe => {
+        allRecipes = allRecipes.filter(recipe => {
           let hasUstensils = false;
           recipe.ustensils.forEach(ustensil => {
             if(ustensil.toLowerCase() === currentFilterText.toLowerCase()) {
@@ -59,9 +59,8 @@ function addFilterAndUpdate(e) {
           return hasUstensils
         });
       }
-      console.log(currentUpdatedRecipes)
-      createCard(currentUpdatedRecipes);
-      createDropdownList(currentUpdatedRecipes);
+      createCard(allRecipes);
+      createDropdownList(allRecipes);
     }
     
 function deleteFilter(e) {
