@@ -3,7 +3,6 @@
 // Updated recipes by click on filter is stored in this variable.
 
 function addFilterAndUpdate(e) {
-
   // Add filter to div
   const selectedFiltersContainer = document.querySelector(
     ".container-selected-filters"
