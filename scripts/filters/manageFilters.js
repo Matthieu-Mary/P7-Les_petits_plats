@@ -1,7 +1,7 @@
 // -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV AND UPDATE LIST OF FILTERS AND CARD APPEARANCE---------------------
+const filtersLists = document.querySelectorAll(".filter-list");
 
 // Updated recipes by click on filter is stored in this variable.
-
 function addFilterAndUpdate(e) {
   // Add filter to div
   const selectedFiltersContainer = document.querySelector(
@@ -17,15 +17,13 @@ function addFilterAndUpdate(e) {
     deleteFilterButton.setAttribute("onclick", "deleteFilter(event)");
     selectedFilter.appendChild(deleteFilterButton);
     
-    const filtersList = document.querySelectorAll(".filter-list");
-    
     // Set color for filters and update filters list
     if (currentList.classList.contains("ingredients")) {
       selectedFilter.style.background = `var(--blue)`;
       selectedFiltersContainer.appendChild(selectedFilter);
       cardContainer.innerHTML = "";
-      filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-      allRecipes = allRecipes.filter(recipe => {
+      filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = filteredRecipes.filter(recipe => {
         let hasIngredients = false;
         recipe.ingredients.forEach(ingredient => {
           if(ingredient.ingredient.toLowerCase() === currentFilterText.toLowerCase()) {
@@ -38,8 +36,8 @@ function addFilterAndUpdate(e) {
       selectedFilter.style.background = `var(--green)`;
       selectedFiltersContainer.appendChild(selectedFilter);
       cardContainer.innerHTML = "";
-      filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-      allRecipes = allRecipes.filter(
+      filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = filteredRecipes.filter(
         (recipe) =>
         recipe.appliance.toLowerCase() === currentFilterText.toLowerCase()
         );
@@ -47,8 +45,8 @@ function addFilterAndUpdate(e) {
         selectedFilter.style.background = `var(--orange)`;
         selectedFiltersContainer.appendChild(selectedFilter);
         cardContainer.innerHTML = "";
-        filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-        allRecipes = allRecipes.filter(recipe => {
+        filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+        filteredRecipes = filteredRecipes.filter(recipe => {
           let hasUstensils = false;
           recipe.ustensils.forEach(ustensil => {
             if(ustensil.toLowerCase() === currentFilterText.toLowerCase()) {
@@ -58,18 +56,56 @@ function addFilterAndUpdate(e) {
           return hasUstensils
         });
       }
-      createCard(allRecipes);
-      createDropdownList(allRecipes);
+      createCard(filteredRecipes);
+      createDropdownList(filteredRecipes, currentFilter, selectedFiltersContainer);
     }
     
 function deleteFilter(e) {
+  console.log(allRecipes)
+  console.log(filteredRecipes)
   const selectedFiltersContainer = document.querySelector(
     ".container-selected-filters"
   );
   const currentFilter = e.currentTarget.parentNode;
   const currentFilterText = currentFilter.textContent;
-  const currentList = currentFilter.parentNode.parentNode.querySelector(".filter");
   selectedFiltersContainer.removeChild(currentFilter);
+
+  if(currentFilter.style.background == 'var(--blue)') {
+    cardContainer.innerHTML = "";
+    filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = allRecipes.filter(recipe => {
+        let hasIngredients = false;
+        recipe.ingredients.forEach(ingredient => {
+          if(ingredient.ingredient.toLowerCase() !== currentFilterText.toLowerCase()) {
+            hasIngredients = true;
+          }
+        })
+        return hasIngredients
+      });
+  }
+  if(currentFilter.style.background == 'var(--green)') {
+    cardContainer.innerHTML = "";
+      filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = allRecipes.filter(
+        (recipe) =>
+        recipe.appliance.toLowerCase() !== currentFilterText.toLowerCase()
+        );
+  }
+  if(currentFilter.style.background == 'var(--orange)') {
+    cardContainer.innerHTML = "";
+      filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = allRecipes.filter(recipe => {
+        let hasUstensils = false;
+        recipe.ustensils.forEach(ustensil => {
+          if(ustensil.toLowerCase() !== currentFilterText.toLowerCase()) {
+            hasUstensils = true;
+          }
+        })
+        return hasUstensils
+      });
+  }
+  createDropdownList(filteredRecipes)
+  createCard(filteredRecipes)
 }
 
 // FUNCTIONS TO DISPLAY FILTERS LIST

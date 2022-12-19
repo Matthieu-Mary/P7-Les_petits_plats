@@ -24,8 +24,7 @@ function dropdownListClose() {
 }
 
 // CREATE LIST OF FILTERS
-function createDropdownList(recipes) {
-  
+function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
   // GET LISTS
   let allIngredients = getIngredients(recipes);
   let allAppliances = getAppliances(recipes);
@@ -43,6 +42,19 @@ function createDropdownList(recipes) {
       item.setAttribute("onclick", "addFilterAndUpdate(event)");
       item.textContent = ingredient;
       ulIngredients.appendChild(item);
+      // If a filter is selected, this filter is removed from the list
+      if(currentFilter) {
+        let hasFilter = false;
+        selectedFiltersContainer.querySelectorAll("span").forEach(element => {
+          if ( element.textContent.toLowerCase() === item.textContent.toLowerCase() )
+          {
+            hasFilter = true
+            if(hasFilter) {
+              ulIngredients.removeChild(item);
+            }
+          } 
+        }) 
+      }
     });
   dropdownIngredientsList.appendChild(ulIngredients);
 
@@ -58,6 +70,19 @@ function createDropdownList(recipes) {
       item.setAttribute("onclick", "addFilterAndUpdate(event)");
       item.textContent = appliance;
       ulAppliances.appendChild(item);
+      // If a filter is selected, this filter is removed from the list
+      if(currentFilter) {
+        let hasFilter = false;
+        selectedFiltersContainer.querySelectorAll("span").forEach(element => {
+          if ( element.textContent.toLowerCase() === item.textContent.toLowerCase() )
+          {
+            hasFilter = true
+            if(hasFilter) {
+              ulAppliances.removeChild(item);
+            }
+          } 
+        }) 
+      }
     });
   dropdownAppliancesList.appendChild(ulAppliances);
 
@@ -73,44 +98,21 @@ function createDropdownList(recipes) {
       item.setAttribute("onclick", "addFilterAndUpdate(event)");
       item.textContent = ustensil;
       ulUstensils.appendChild(item);
+      // If a filter is selected, this filter is removed from the list
+      if(currentFilter) {
+        let hasFilter = false;
+        selectedFiltersContainer.querySelectorAll("span").forEach(element => {
+          if ( element.textContent.toLowerCase() === item.textContent.toLowerCase() )
+          {
+            hasFilter = true
+            if(hasFilter) {
+              ulUstensils.removeChild(item);
+            }
+          } 
+        }) 
+      }
     });
   dropdownUstensilsList.appendChild(ulUstensils);
 }
 
-// -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV AND UPDATE LIST OF FILTERS AND CARD APPEARANCE---------------------
-function addFilterAndUpdate(e) {
-  // Add filter to div
-  const selectedFiltersContainer = document.querySelector(
-    ".container-selected-filters"
-  );
-  const currentFilter = e.currentTarget;
-  const currentFilterText = currentFilter.textContent;
-  const currentList = currentFilter.parentNode.parentNode.parentNode;
-  const selectedFilter = document.createElement("span");
-  selectedFilter.textContent = currentFilterText;
-  const deleteFilterButton = document.createElement("img");
-  deleteFilterButton.setAttribute("src", "../assets/images/closeBtn.svg");
-  deleteFilterButton.setAttribute("onclick", "deleteFilter(event)");
-  selectedFilter.appendChild(deleteFilterButton);
 
-  // Set color for filters
-  if (currentList.classList.contains("ingredients")) {
-    selectedFilter.style.background = `var(--blue)`;
-  } else if (currentList.classList.contains("appliances")) {
-    selectedFilter.style.background = `var(--green)`;
-    selectedFiltersContainer.appendChild(selectedFilter);
-    const newArr = allRecipes.filter(recipe => recipe.appliance.toLowerCase() === currentFilterText.toLowerCase())
-    createCard(newArr)
-} else {
-    selectedFilter.style.background = `var(--orange)`;
-}
-}
-
-function deleteFilter(e) {
-  const selectedFiltersContainer = document.querySelector(
-    ".container-selected-filters"
-  );
-  const currentFilter = e.currentTarget.parentNode;
-  selectedFiltersContainer.removeChild(currentFilter);
-}
-// ---------------------------------------------------------------------------------------
