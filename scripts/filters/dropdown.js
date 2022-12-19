@@ -57,6 +57,15 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
       }
     });
   dropdownIngredientsList.appendChild(ulIngredients);
+  // Display message if no more filters disponible
+  if(ulIngredients.childElementCount === 0) {
+    const ingredientsFail = document.createElement("p");
+    ingredientsFail.classList.add("no-more-filter");
+    ingredientsFail.textContent = "Plus aucun filtre appareils disponible ..."
+    dropdownIngredientsList.removeChild(ulIngredients)
+    dropdownIngredientsList.appendChild(ingredientsFail)
+  }
+  
 
   // Display appliances list
   const dropdownAppliancesList = document.querySelector(
@@ -85,6 +94,14 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
       }
     });
   dropdownAppliancesList.appendChild(ulAppliances);
+    // Display message if no more filters disponible
+    if(ulAppliances.childElementCount === 0) {
+      const applianceFail = document.createElement("p");
+      applianceFail.classList.add("no-more-filter");
+      applianceFail.textContent = "Plus aucun filtre appareils disponible ..."
+      dropdownAppliancesList.removeChild(ulAppliances)
+      dropdownAppliancesList.appendChild(applianceFail)
+    }
 
   // Display ustensils list
   const dropdownUstensilsList = document.querySelector(
@@ -113,6 +130,14 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
       }
     });
   dropdownUstensilsList.appendChild(ulUstensils);
+  // Display message if no more filters disponible
+  if(ulUstensils.childElementCount === 0) {
+    const ustensilFail = document.createElement("p");
+    ustensilFail.classList.add("no-more-filter");
+    ustensilFail.textContent = "Plus aucun filtre ustensils disponible ..."
+    dropdownUstensilsList.removeChild(ulUstensils)
+    dropdownUstensilsList.appendChild(ustensilFail)
+  }
 }
 
 

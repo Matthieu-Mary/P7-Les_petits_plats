@@ -185,6 +185,9 @@ header h1 {
 .filters .container-buttons-filters .filter-list ul li:hover {
   opacity: 0.75;
 }
+.filters .container-buttons-filters .filter-list .no-more-filter {
+  padding: 20px;
+}
 .filters .container-buttons-filters .dropdown-open {
   width: 600px;
 }
