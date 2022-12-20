@@ -42,5 +42,5 @@ function filterRecipesBySearchInput(e) {
 function updatedRecipes(searchResult) {
   filteredRecipes = searchResult;
   return filteredRecipes
-  }
+}
   
