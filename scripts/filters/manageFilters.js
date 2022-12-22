@@ -27,9 +27,16 @@ function addFilterAndUpdate(e) {
   // Set color for filters and update filters list
   if (currentList.classList.contains("ingredients")) {
     selectedFilter.style.background = `var(--blue)`;
-    allRecipes = allRecipes.filter((recipe) => {
-      return recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(selectedFiltersArr));
-    });
+    filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = filteredRecipes.filter(recipe => {
+        let hasIngredients = false;
+        recipe.ingredients.forEach(ingredient => {
+          if(ingredient.ingredient.toLowerCase() === currentFilterText.toLowerCase()) {
+            hasIngredients = true;
+          }
+        })
+        return hasIngredients
+      });
   } else if (currentList.classList.contains("appliances")) {
     selectedFilter.style.background = `var(--green)`;
     allRecipes = allRecipes.filter((recipe) =>
