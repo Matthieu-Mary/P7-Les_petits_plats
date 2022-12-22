@@ -2,13 +2,11 @@ const cardContainer = document.querySelector(".recipes");
 
 // The value of this variable is used to display cards and filters, its updated by filters and search bar
 let allRecipes;
-let filteredRecipes;
 
 // FIRST RENDER
 async function initRecipes() {
   const recipes = await getRecipes();
   allRecipes = recipes;
-  filteredRecipes = recipes;
   getIngredients(allRecipes);
   getAppliances(allRecipes);
   getUstensils(allRecipes);

@@ -27,24 +27,24 @@ function addFilterAndUpdate(e) {
   // Set color for filters and update filters list
   if (currentList.classList.contains("ingredients")) {
     selectedFilter.style.background = `var(--blue)`;
-    console.log(selectedFiltersArr);
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(selectedFiltersArr));
+    allRecipes = allRecipes.filter((recipe) => {
+      return recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(selectedFiltersArr));
     });
-    console.log(filteredRecipes)
   } else if (currentList.classList.contains("appliances")) {
     selectedFilter.style.background = `var(--green)`;
-    filteredRecipes = filteredRecipes.filter((recipe) =>
-      recipe.appliance.toLowerCase().includes(selectedFiltersArr)
+    allRecipes = allRecipes.filter((recipe) =>
+    recipe.appliance.toLowerCase().includes(selectedFiltersArr)
     );
   } else if (currentList.classList.contains("ustensils")) {
     selectedFilter.style.background = `var(--orange)`;
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      recipe.ustensils.includes(selectedFiltersArr)
+    allRecipes = allRecipes.filter((recipe) => {
+      return !recipe.ustensils.some(ustensil => ustensil.toLowerCase().includes(selectedFiltersArr))
     });
   }
-  createDropdownList(filteredRecipes, currentFilter, selectedFiltersContainer);
-  createCard(filteredRecipes);
+  console.log(selectedFiltersArr);
+  console.log(allRecipes)
+  createDropdownList(allRecipes, currentFilter, selectedFiltersContainer);
+  createCard(allRecipes);
 }
 
 function deleteFilter(e) {
@@ -54,43 +54,29 @@ function deleteFilter(e) {
   const currentFilter = e.currentTarget.parentNode;
   const currentFilterText = currentFilter.textContent;
   selectedFiltersContainer.removeChild(currentFilter);
+  cardContainer.innerHTML = "";
+  filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
   if (currentFilter.style.background === "var(--blue)") {
-    cardContainer.innerHTML = "";
-    filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
-    filteredRecipes = allRecipes.filter((recipe) => {
-      let hasIngredients = false;
-      recipe.ingredients.forEach((ingredient) => {
-        if (ingredient.ingredient.toLowerCase().includes(selectedFilters)) {
-          hasIngredients = true;
-        }
-      });
-      return hasIngredients;
+    console.log("ingredient detruit")
+    allRecipes = allRecipes.filter((recipe) => {
+      return !recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(selectedFiltersArr));
     });
   }
   if (currentFilter.style.background === "var(--green)") {
-    cardContainer.innerHTML = "";
-    filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-    filteredRecipes = allRecipes.filter(
-      (recipe) =>
-        recipe.appliance.toLowerCase() !== currentFilterText.toLowerCase()
+    console.log("Appareil detruit")
+    allRecipes = allRecipes.filter((recipe) =>    
+    !recipe.appliance.toLowerCase().includes(selectedFiltersArr)
     );
   }
   if (currentFilter.style.background === "var(--orange)") {
-    cardContainer.innerHTML = "";
-    filtersList.forEach((filtersList) => (filtersList.innerHTML = ""));
-    filteredRecipes = allRecipes.filter((recipe) => {
-      let hasUstensils = false;
-      recipe.ustensils.forEach((ustensil) => {
-        if (ustensil.toLowerCase() !== currentFilterText.toLowerCase()) {
-          hasUstensils = true;
-        }
-      });
-      return hasUstensils;
+    console.log("Ustensil detruit")
+    allRecipes = allRecipes.filter((recipe) => {
+      return !recipe.ustensils.some(ustensil => ustensil.toLowerCase().includes(selectedFiltersArr))
     });
   }
-  createCard(filteredRecipes);
-  createDropdownList(filteredRecipes, currentFilter, selectedFiltersContainer);
+  createCard(allRecipes);
+  createDropdownList(allRecipes, currentFilter, selectedFiltersContainer);
 }
 
 // FUNCTIONS TO DISPLAY FILTERS LIST
