@@ -7,6 +7,7 @@ let allRecipes;
 async function initRecipes() {
   const recipes = await getRecipes();
   allRecipes = recipes;
+  filteredRecipes = recipes;
   getIngredients(allRecipes);
   getAppliances(allRecipes);
   getUstensils(allRecipes);
