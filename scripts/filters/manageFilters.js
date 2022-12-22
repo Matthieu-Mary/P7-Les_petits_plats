@@ -39,9 +39,11 @@ function addFilterAndUpdate(e) {
       });
   } else if (currentList.classList.contains("appliances")) {
     selectedFilter.style.background = `var(--green)`;
-    allRecipes = allRecipes.filter((recipe) =>
-    recipe.appliance.toLowerCase().includes(selectedFiltersArr)
-    );
+    filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+      filteredRecipes = filteredRecipes.filter(
+        (recipe) =>
+        recipe.appliance.toLowerCase() === currentFilterText.toLowerCase()
+        );
   } else if (currentList.classList.contains("ustensils")) {
     selectedFilter.style.background = `var(--orange)`;
     allRecipes = allRecipes.filter((recipe) => {
