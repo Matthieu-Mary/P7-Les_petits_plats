@@ -85,8 +85,8 @@ function deleteFilter(e) {
     filteredRecipesArr.splice(newFilteredRecipesArr, 1);
   }
 
-
   if(filteredRecipesArr.length > 0) {
+    console.log(newRecipes)
     newRecipes = allRecipes.filter(recipe => {
       const {appliance, ingredients, ustensils} = recipe;
       return (
@@ -101,7 +101,6 @@ function deleteFilter(e) {
     newRecipes = allRecipes
   }
 
-  console.log(newRecipes)
 
   filteredRecipes = newRecipes;
   
