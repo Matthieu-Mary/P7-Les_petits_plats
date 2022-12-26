@@ -39,7 +39,7 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
     .filter((ingredient, index) => allIngredients.indexOf(ingredient) === index)
     .forEach((ingredient) => {
       const item = document.createElement("li");
-      item.setAttribute("onclick", "addFilterAndUpdate(event)");
+      item.setAttribute("onclick", "updateRecipes(event)");
       item.textContent = ingredient;
       ulIngredients.appendChild(item);
       // If a filter is selected, this filter is removed from the list
@@ -76,7 +76,7 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
     .filter((appliance, index) => allAppliances.indexOf(appliance) === index)
     .forEach((appliance) => {
       const item = document.createElement("li");
-      item.setAttribute("onclick", "addFilterAndUpdate(event)");
+      item.setAttribute("onclick", "updateRecipes(event)");
       item.textContent = appliance;
       ulAppliances.appendChild(item);
       // If a filter is selected, this filter is removed from the list
@@ -112,7 +112,7 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
     .filter((ustensil, index) => allUstensils.indexOf(ustensil) === index)
     .forEach((ustensil) => {
       const item = document.createElement("li");
-      item.setAttribute("onclick", "addFilterAndUpdate(event)");
+      item.setAttribute("onclick", "updateRecipes(event)");
       item.textContent = ustensil;
       ulUstensils.appendChild(item);
       // If a filter is selected, this filter is removed from the list

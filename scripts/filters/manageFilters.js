@@ -1,10 +1,12 @@
 // -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV AND UPDATE LIST OF FILTERS AND CARD APPEARANCE---------------------
 const filtersLists = document.querySelectorAll(".filter-list");
 
-const filteredRecipesArr = [];
+const filteredIngredients = [];
+const filteredAppliances = [];
+const filteredUstensils = [];
 
-// Updated recipes by click on filter is stored in this variable.
-function addFilterAndUpdate(e) {
+// Updated recipes by click on add/delete filter is stored in this variable.
+function updateRecipes(e) {
   // Add filter to div
   const selectedFiltersContainer = document.querySelector(
     ".container-selected-filters"
@@ -16,56 +18,53 @@ function addFilterAndUpdate(e) {
   selectedFilter.textContent = currentFilterText;
   const deleteFilterButton = document.createElement("img");
   deleteFilterButton.setAttribute("src", "../assets/images/closeBtn.svg");
-  deleteFilterButton.setAttribute("onclick", "deleteFilter(event)");
+  deleteFilterButton.setAttribute("onclick", "updateRecipes(event)");
   selectedFilter.appendChild(deleteFilterButton);
   cardContainer.innerHTML = "";
   filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
-  // Add current filter to filters array
-  filteredRecipesArr.push(currentFilterText.toLowerCase());
-
-  console.log(filteredRecipesArr);
 
   // Set color for filters and update filters list
   if (currentList.classList.contains("ingredients")) {
     selectedFilter.style.background = `var(--blue)`;
     selectedFiltersContainer.appendChild(selectedFilter);
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      let hasIngredients = false;
-      recipe.ingredients.forEach((ingredient) => {
-        if (
-          ingredient.ingredient.toLowerCase() ===
-          currentFilterText.toLowerCase()
-        ) {
-          hasIngredients = true;
-        }
-      });
-      return hasIngredients;
-    });
+    filteredIngredients.push(currentFilterText.toLowerCase());
+    const filteredRecipesByIngredients = allRecipes.filter((recipe) =>
+    recipe.ingredients.some((ingredient) =>
+    filteredIngredients.includes(ingredient.ingredient.toLowerCase())
+    ));
+    console.log("Ingredients :")
+    console.log(filteredRecipesByIngredients);
+    allRecipes = filteredRecipesByIngredients;
   } else if (currentList.classList.contains("appliances")) {
     selectedFilter.style.background = `var(--green)`;
     selectedFiltersContainer.appendChild(selectedFilter);
-    filteredRecipes = filteredRecipes.filter(
-      (recipe) =>
-        recipe.appliance.toLowerCase() === currentFilterText.toLowerCase()
-    );
+    filteredAppliances.push(currentFilterText.toLowerCase());
+    const filteredRecipesByAppliances = allRecipes.filter(recipe => filteredAppliances.includes(recipe.appliance.toLowerCase()));
+    console.log("Appliances :")
+    console.log(filteredRecipesByAppliances);
+    allRecipes = filteredRecipesByAppliances;
   } else if (currentList.classList.contains("ustensils")) {
     selectedFilter.style.background = `var(--orange)`;
     selectedFiltersContainer.appendChild(selectedFilter);
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      let hasUstensils = false;
-      recipe.ustensils.forEach((ustensil) => {
-        if (ustensil.toLowerCase() === currentFilterText.toLowerCase()) {
-          hasUstensils = true;
-        }
-      });
-      return hasUstensils;
-    });
+    filteredUstensils.push(currentFilterText.toLowerCase())
+    const filteredRecipesByUstensils = allRecipes.filter((recipe) =>
+    recipe.ustensils.some((ustensil) =>
+    filteredUstensils.includes(ustensil.toLowerCase())
+    ));
+    console.log("Ustensils :")
+    console.log(filteredRecipesByUstensils);
+    allRecipes = filteredRecipesByUstensils;
   }
-  createCard(filteredRecipes);
-  createDropdownList(filteredRecipes, currentFilter, selectedFiltersContainer);
-}
+  
+  console.log("Tous les filtres réunis :")
+  console.log(allRecipes)   
+  
+  // ///////----------------///////----------------///////-----------///////--------//////////--------->
 
+  createCard(allRecipes);
+  createDropdownList(allRecipes, currentFilter, selectedFiltersContainer);
+}
 
 let newRecipes;
 
@@ -79,31 +78,33 @@ function deleteFilter(e) {
   cardContainer.innerHTML = "";
   filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
-  // Delete filter from filteredRecipesArr when its removed by user on DOM
-  const newFilteredRecipesArr = filteredRecipesArr.indexOf(currentFilterText.toLowerCase());
-  if (newFilteredRecipesArr !== -1) {
-    filteredRecipesArr.splice(newFilteredRecipesArr, 1);
+  // Delete filter from filtered ingredients, ustensils or appliances Arr, when its removed by user on DOM
+  // INGREDIENTS ARR
+  const newFilteredIngredients = filteredIngredients.indexOf(
+    currentFilterText.toLowerCase()
+  );
+  if (newFilteredIngredients !== -1) {
+    filteredIngredients.splice(newFilteredIngredients, 1);
   }
-
-  if(filteredRecipesArr.length > 0) {
-    console.log(newRecipes)
-    newRecipes = allRecipes.filter(recipe => {
-      const {appliance, ingredients, ustensils} = recipe;
-      return (
-        appliance.toLowerCase().includes(filteredRecipesArr)
-        &&
-        ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(filteredRecipesArr))
-        &&
-        ustensils.some(ustensil => ustensil.toLowerCase().includes(filteredRecipesArr))
-      )
-    })
-  } else {
-    newRecipes = allRecipes
+  filteredIngredients = newFilteredIngredients;
+  // APPLIANCES ARR
+  const newFilteredAppliances = filteredAppliances.indexOf(
+    currentFilterText.toLowerCase()
+  );
+  if (newFilteredAppliances !== -1) {
+    filteredAppliances.splice(newFilteredAppliances, 1);
   }
+  filteredAppliances = newFilteredAppliances;
+  // USTENSILS ARR
+  const newFilteredUstensils = filteredUstensils.indexOf(
+    currentFilterText.toLowerCase()
+  );
+  if (newFilteredUstensils !== -1) {
+    filteredUstensils.splice(newFilteredUstensils, 1);
+  }
+  filteredUstensils = newFilteredUstensils;
 
 
-  filteredRecipes = newRecipes;
-  
   createCard(newRecipes);
   createDropdownList(newRecipes, currentFilter, selectedFiltersContainer);
 }
