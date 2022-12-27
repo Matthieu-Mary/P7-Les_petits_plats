@@ -1,10 +1,11 @@
 // -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV AND UPDATE LIST OF FILTERS AND CARD APPEARANCE---------------------
 const filtersLists = document.querySelectorAll(".filter-list");
 
-const filteredIngredientsByTag = [];
-const filteredAppliancesByTag = [];
-const filteredUstensilsByTag = [];
+let filteredIngredientsByTag = [];
+let filteredAppliancesByTag = [];
+let filteredUstensilsByTag = [];
 
+// This function sort the recipes list by ingredients, appliances and ustensils filters tags
 function recipesTagFilter(
   filteredRecipes,
   currentFilter,
@@ -70,6 +71,9 @@ function updateRecipes(e) {
     filteredRecipes = [...allRecipes];
 
     if (selectedFiltersContainer.childElementCount === 0) {
+      filteredIngredientsByTag = [];
+      filteredAppliancesByTag = [];
+      filteredUstensilsByTag = [];
       createCard(filteredRecipes);
       createDropdownList(
         filteredRecipes,
