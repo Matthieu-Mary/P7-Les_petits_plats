@@ -84,11 +84,6 @@ function updateRecipes(e) {
       );
       if (ingredientIndex !== -1) {
         filteredIngredientsByTag.splice(ingredientIndex, 1);
-        recipesTagFilter(
-          filteredRecipes,
-          currentFilter,
-          selectedFiltersContainer
-        );
       }
       // APPLIANCES ARR
       const applianceIndex = filteredAppliancesByTag.indexOf(
@@ -96,11 +91,6 @@ function updateRecipes(e) {
       );
       if (applianceIndex !== -1) {
         filteredAppliancesByTag.splice(applianceIndex, 1);
-        recipesTagFilter(
-          filteredRecipes,
-          currentFilter,
-          selectedFiltersContainer
-        );
       }
       // USTENSILS ARR
       const ustensilIndex = filteredUstensilsByTag.indexOf(
@@ -108,11 +98,6 @@ function updateRecipes(e) {
       );
       if (ustensilIndex !== -1) {
         filteredUstensilsByTag.splice(ustensilIndex, 1);
-        recipesTagFilter(
-          filteredRecipes,
-          currentFilter,
-          selectedFiltersContainer
-        );
       }
       recipesTagFilter(
         filteredRecipes,
@@ -121,12 +106,6 @@ function updateRecipes(e) {
       );
     }
 
-    // createCard(filteredRecipes);
-    // createDropdownList(
-    //   filteredRecipes,
-    //   currentFilter,
-    //   selectedFiltersContainer
-    //   );
   } else {
     if (currentList.classList.contains("ingredients")) {
       // Set color for filters and update filters list
@@ -143,50 +122,10 @@ function updateRecipes(e) {
       filteredUstensilsByTag.push(currentFilterText.toLowerCase());
     }
 
-    // console.log("Tous les filtres réunis :");
-    // console.log(filteredRecipes);
-
     recipesTagFilter(filteredRecipes, currentFilter, selectedFiltersContainer);
 
-    // createCard(filteredRecipes);
-    // createDropdownList(
-    //   filteredRecipes,
-    //   currentFilter,
-    //   selectedFiltersContainer
-    // );
   }
 }
 
-// SORT RECIPES ------
-// function ingredient() {
-//   for (const filteredIngredient of filteredIngredientsByTag) {
-//     filteredRecipes = filteredRecipes.filter((recipe) =>
-//       recipe.ingredients.some(
-//         (ingredient) =>
-//           ingredient.ingredient.toLowerCase() === filteredIngredient
-//       )
-//     );
-//   }
-//   return filteredRecipes;
-// }
-
-// function appliance() {
-//   filteredRecipes = filteredRecipes.filter((recipe) =>
-//     filteredAppliancesByTag.includes(recipe.appliance.toLowerCase())
-//   );
-//   return filteredRecipes;
-// }
-
-// function ustensil() {
-//   for (const filteredUstensil of filteredUstensilsByTag) {
-//     filteredRecipes = filteredRecipes.filter((recipe) =>
-//       recipe.ustensils.some(
-//         (ustensil) => ustensil.toLowerCase() === filteredUstensil
-//       )
-//     );
-//   }
-//   return filteredRecipes;
-// }
-// ------------------
 
 
