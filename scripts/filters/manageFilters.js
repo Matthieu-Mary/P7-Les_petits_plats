@@ -5,48 +5,6 @@ let filteredIngredientsByTag = [];
 let filteredAppliancesByTag = [];
 let filteredUstensilsByTag = [];
 
-// This function sort the recipes list by ingredients, appliances and ustensils filters tags
-function recipesTagFilter(
-  filteredRecipes,
-  currentFilter,
-  selectedFiltersContainer
-) {
-
-  cardContainer.innerHTML = "";
-  filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""))
-
-  // Filtre cartes
-  let itemsFiltered = [];
-  itemsFiltered = filteredRecipes.filter(
-    (items) =>
-      [...filteredIngredientsByTag].every((ingredientSelected) =>
-        items.ingredients.some(
-          (item) => item.ingredient.toLowerCase() === ingredientSelected
-        )
-      ) &&
-      [...filteredUstensilsByTag].every((ustensilSelected) =>
-        items.ustensils.some((item) => item.toLowerCase() === ustensilSelected)
-      ) &&
-      [...filteredAppliancesByTag].every(
-        (applianceSelected) =>
-          items.appliance.toLowerCase() === applianceSelected
-      )
-  );
-
-  console.log("Ingredients :")
-  console.log(filteredIngredientsByTag)
-  console.log("Appareils :")
-  console.log(filteredAppliancesByTag)
-  console.log("Ustensiles :")
-  console.log(filteredUstensilsByTag)
-
-  console.log("Recettes filtrées :")
-  console.log(itemsFiltered);
-  
-  createCard(itemsFiltered);
-  createDropdownList(itemsFiltered, currentFilter, selectedFiltersContainer);
-}
-
 // Updated recipes by click on add/delete filter is stored in this variable.
 function updateRecipes(e) {
   // Add filter to div
@@ -109,7 +67,6 @@ function updateRecipes(e) {
         selectedFiltersContainer
       );
     }
-
   } else {
     if (currentList.classList.contains("ingredients")) {
       // Set color for filters and update filters list
@@ -127,9 +84,53 @@ function updateRecipes(e) {
     }
 
     recipesTagFilter(filteredRecipes, currentFilter, selectedFiltersContainer);
-
   }
 }
 
+// This function sort the recipes list by ingredients, appliances and ustensils filters tags
+function recipesTagFilter(
+  filteredRecipes,
+  currentFilter,
+  selectedFiltersContainer
+) {
+  cardContainer.innerHTML = "";
+  filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
+  // Filtre cartes
+  let itemsFiltered = [];
+  itemsFiltered = filteredRecipes.filter(
+    (items) =>
+      [...filteredIngredientsByTag].every((ingredientSelected) =>
+        items.ingredients.some(
+          (item) => item.ingredient.toLowerCase() === ingredientSelected
+        )
+      ) &&
+      [...filteredUstensilsByTag].every((ustensilSelected) =>
+        items.ustensils.some((item) => item.toLowerCase() === ustensilSelected)
+      ) &&
+      [...filteredAppliancesByTag].every(
+        (applianceSelected) =>
+          items.appliance.toLowerCase() === applianceSelected
+      )
+  );
+  createCard(itemsFiltered);
+  createDropdownList(itemsFiltered, currentFilter, selectedFiltersContainer);
+}
 
+function dropdownFiltersInputs(e) {
+  const currentInputParent = e.target.parentNode;
+  console.log(currentInputParent)
+  const inputs = document.querySelectorAll(".filter input");
+  
+  [...inputs].map( input => {
+    inputValue = input.value.toLowerCase();
+    if(currentInputParent.classList.contains("ingredients")) {
+      
+      console.log("c'est un ingrédient")
+    } else if (currentInputParent.classList.contains("appliances")) {
+      console.log("c'est un appareil")
+    } else {
+      console.log("c'est un ustensil")
+    }
+  } )
+}

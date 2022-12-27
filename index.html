@@ -34,7 +34,7 @@
 
         <div class="container-buttons-filters">
           <div class="filter ingredients" onmousedown="dropdownListOpen(event)">
-            <input type="text" placeholder="Ingredients" oninput="getDropdownList()" />
+            <input type="text" placeholder="Ingredients" oninput="dropdownFiltersInputs(event)" />
             <div class="open-filter-list">
               <button onclick="dropdownListToggle(event)">
                 <img
@@ -47,7 +47,7 @@
           </div>
 
           <div class="filter appliances" onmousedown="dropdownListOpen(event)">
-            <input type="text" placeholder="Appareils" oninput="getDropdownList()" />
+            <input type="text" placeholder="Appareils" oninput="dropdownFiltersInputs(event)" />
             <div class="open-filter-list">
               <button onclick="dropdownListToggle(event)">
                 <img
@@ -60,7 +60,7 @@
           </div>
 
           <div class="filter ustensils" onmousedown="dropdownListOpen(event)">
-            <input type="text" placeholder="Ustensils" oninput="getDropdownList()" />
+            <input type="text" placeholder="Ustensils" oninput="dropdownFiltersInputs(event)" />
             <div class="open-filter-list">
               <button onclick="dropdownListToggle(event)">
                 <img
