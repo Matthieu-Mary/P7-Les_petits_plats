@@ -9,11 +9,11 @@ async function initRecipes() {
   const recipes = await getRecipes();
   allRecipes = recipes;
   filteredRecipes = recipes;
-  getIngredients(allRecipes);
-  getAppliances(allRecipes);
-  getUstensils(allRecipes);
-  createCard(allRecipes);
-  createDropdownList(allRecipes);
+  getIngredients(recipes);
+  getAppliances(recipes);
+  getUstensils(recipes);
+  createCard(recipes);
+  createDropdownList(recipes);
 }
 initRecipes();
 
