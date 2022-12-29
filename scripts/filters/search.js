@@ -16,7 +16,7 @@ function filterRecipesBySearchInput(e) {
       (recipe) =>
         recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
         recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
-        recipe.ingredients.forEach((ingredient) =>
+        recipe.ingredients.some((ingredient) =>
           ingredient.ingredient.toLowerCase().trim().includes(searchedRecipe)
         )
     );
