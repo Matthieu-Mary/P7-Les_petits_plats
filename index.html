@@ -60,7 +60,7 @@
           </div>
 
           <div class="filter ustensils" onmousedown="dropdownListOpen(event)">
-            <input type="text" placeholder="Ustensils" oninput="dropdownFiltersInputs(event)" />
+            <input type="text" placeholder="Ustensils" oninput="filterUstensilsByInput(event)" />
             <div class="open-filter-list">
               <button onclick="dropdownListToggle(event)">
                 <img
@@ -88,6 +88,9 @@
 
     <!-- SEARCH INPUT -->
     <script src="./scripts/filters/search.js"></script>
+
+    <!-- FILTERS INPUTS -->
+    <script src="./scripts/filters/filtersInputs.js"></script>
 
     <!-- FACTORY -->
     <script src="./scripts/factory/displayRecipes.js"></script>

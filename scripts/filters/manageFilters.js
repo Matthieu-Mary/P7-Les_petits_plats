@@ -6,11 +6,6 @@ let filteredIngredientsByTag = [];
 let filteredAppliancesByTag = [];
 let filteredUstensilsByTag = [];
 
-// Array by filters Search
-let filteredIngredientsBySearch = [];
-let filteredAppliancesBySearch = [];
-let filteredUstensilsBySearch = [];
-
 // Updated recipes by click on add/delete filter is stored in this variable.
 function updateRecipes(e) {
   // Add filter to div
@@ -35,9 +30,11 @@ function updateRecipes(e) {
     filteredRecipes = [...allRecipes];
 
     if (selectedFiltersContainer.childElementCount === 0) {
+      // Reset tags arrays
       filteredIngredientsByTag = [];
       filteredAppliancesByTag = [];
       filteredUstensilsByTag = [];
+      
       createCard(filteredRecipes);
       createDropdownList(
         filteredRecipes,
@@ -119,71 +116,7 @@ function recipesTagFilter(
           items.appliance.toLowerCase() === applianceSelected
       )
   );
-
-  // Filtered elements by tags are egual to filtered elements by search
-  filteredIngredientsBySearch = filteredIngredientsByTag;
-  filteredAppliancesBySearch = filteredAppliancesByTag;
-  filteredUstensilsBySearch = filteredUstensilsByTag;
-
-  console.log(filteredIngredientsByTag);
-
   createCard(itemsFiltered);
   createDropdownList(itemsFiltered, currentFilter, selectedFiltersContainer);
 }
 
-// SEARCH INPUTS ON DROPDOWN LISTS
-// function dropdownFiltersInputs(e) {
-//   const currentInputParent = e.target.parentNode;
-//   const inputs = document.querySelectorAll(".filter input");
-
-//   cardContainer.innerHTML = "";
-//   filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
-
-//   [...inputs].map( input => {
-//     inputValue = input.value.toLowerCase();
-
-//     if(currentInputParent.classList.contains("ingredients") && inputValue.length >=3) {
-
-//     } else if (currentInputParent.classList.contains("appliances")) {
-//       console.log("appareils")
-//     } else if (currentInputParent.classList.contains("ustensils")){
-//       console.log("ustensiles")
-//     }
-//   } )
-//   createCard(filteredRecipes)
-//   createDropdownList(filteredRecipes);
-// }
-
-function filterIngredientsByInput(e) {
-  const inputValue = e.target.value.toLowerCase();
-  cardContainer.innerHTML = "";
-  filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
-  if (inputValue.length >= 3) {
-    filteredRecipes = allRecipes.filter((recipe) =>
-     console.log("aie")
-    );
-    createCard(filteredRecipes);
-    createDropdownList(filteredRecipes);
-  } else {
-    filteredRecipes = [...allRecipes];
-    createCard(filteredRecipes);
-    createDropdownList(filteredRecipes);
-  }
-}
-
-function filterApplianceByInput(e) {
-  const inputValue = e.target.value.toLowerCase();
-  cardContainer.innerHTML = "";
-  filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
-  if (inputValue.length >= 3) {
-    filteredRecipes = allRecipes.filter((recipe) =>
-      recipe.appliance.toLowerCase().includes(inputValue)
-    );
-    createCard(filteredRecipes);
-    createDropdownList(filteredRecipes);
-  } else {
-    filteredRecipes = [...allRecipes];
-    createCard(filteredRecipes);
-    createDropdownList(filteredRecipes);
-  }
-}
