@@ -13,14 +13,8 @@ function filterIngredientsByInput(e) {
         })
         return hasIngredients
       });
-      console.log(filteredRecipes)
-      createCard(filteredRecipes);
       createDropdownList(filteredRecipes);
-    } else {
-      filteredRecipes = [...allRecipes];
-      createCard(filteredRecipes);
-      createDropdownList(filteredRecipes);
-    }
+    } 
   }
   
   function filterApplianceByInput(e) {
@@ -31,11 +25,9 @@ function filterIngredientsByInput(e) {
       filteredRecipes = allRecipes.filter((recipe) =>
         recipe.appliance.toLowerCase().includes(inputValue)
       );
-      createCard(filteredRecipes);
       createDropdownList(filteredRecipes);
     } else {
       filteredRecipes = [...allRecipes];
-      createCard(filteredRecipes);
       createDropdownList(filteredRecipes);
     }
   }
@@ -54,12 +46,9 @@ function filterIngredientsByInput(e) {
         })
         return hasUstensils
       });
-      console.log(filteredRecipes)
-      createCard(filteredRecipes);
       createDropdownList(filteredRecipes);
     } else {
       filteredRecipes = [...allRecipes];
-      createCard(filteredRecipes);
       createDropdownList(filteredRecipes);
     }
   }
