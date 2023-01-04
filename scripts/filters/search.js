@@ -12,14 +12,8 @@ function filterRecipesBySearchInput(e) {
   let searchResult = allRecipes;
   // Start filtering by name, description and ingredients, only if value.length >= 3
   if (e.target.value.length >= 3) {
-    searchResult = allRecipes.filter(
-      (recipe) =>
-        recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
-        recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.toLowerCase().trim().includes(searchedRecipe)
-        )
-    );
+    searchWithArrMethods(searchedRecipe, searchResult)
+    console.log(searchResult)
     // Display message if no recipes founded
     if (searchResult.length === 0) {
       const failMessage = document.createElement("h3");
