@@ -7,6 +7,5 @@ function searchWithArrMethods(searchedRecipe, searchResult) {
             ingredient.ingredient.toLowerCase().trim().includes(searchedRecipe)
           )
       );
-      console.log(searchResult)
     return searchResult
 }
