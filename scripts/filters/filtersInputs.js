@@ -1,34 +1,29 @@
 // Functions for filters Inputs
 function filterIngredientsByInput(e) {
-    const inputValue = e.target.value.toLowerCase();
-    cardContainer.innerHTML = "";
-    filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+    const inputValue = e.target.value;
+    filtersLists[0].innerHTML = "";
     if (inputValue.length >= 3) {
-      filteredRecipes = allRecipes.filter(recipe => {
-        let hasIngredients = false;
-        recipe.ingredients.forEach(ingredient => {
-          if(ingredient.ingredient.toLowerCase().includes(inputValue)) {
-            hasIngredients = true;
-          }
-        })
-        return hasIngredients
-      });
-      createDropdownList(filteredRecipes);
-    } 
+      let ingredients = getIngredients(allRecipes)
+      for (const ingredient of ingredients) {
+        if (ingredient.toLowerCase().includes(inputValue.toLowerCase())) {
+
+        }
+      }
+    } else {
+      createDropdownList(allRecipes)
+    }
   }
   
   function filterApplianceByInput(e) {
     const inputValue = e.target.value.toLowerCase();
-    cardContainer.innerHTML = "";
-    filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+    filtersLists[1].innerHTML = "";
     if (inputValue.length >= 3) {
       filteredRecipes = allRecipes.filter((recipe) =>
         recipe.appliance.toLowerCase().includes(inputValue)
       );
       createDropdownList(filteredRecipes);
     } else {
-      filteredRecipes = [...allRecipes];
-      createDropdownList(filteredRecipes);
+      createDropdownList(allRecipes);
     }
   }
   
@@ -48,7 +43,6 @@ function filterIngredientsByInput(e) {
       });
       createDropdownList(filteredRecipes);
     } else {
-      filteredRecipes = [...allRecipes];
-      createDropdownList(filteredRecipes);
+      createDropdownList(allRecipes);
     }
   }
