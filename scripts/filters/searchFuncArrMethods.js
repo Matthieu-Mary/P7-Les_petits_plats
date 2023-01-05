@@ -15,7 +15,10 @@ function searchWithArrMethods(searchedRecipe, searchResult) {
       failMessage.textContent = `Aucune recette ne correspond à votre critère… vous pouvez
         chercher "tarte aux pommes",  "poisson", etc`;
       cardContainer.appendChild(failMessage);
+    } else {
+      cardContainer.style.display = "grid";
     }
+    
     createCard(searchResult);
     createDropdownList(searchResult);
     updatedRecipes(searchResult)
