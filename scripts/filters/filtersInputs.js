@@ -5,9 +5,7 @@ function filterIngredientsByInput(e) {
     if (inputValue.length >= 3) {
       let ingredients = getIngredients(allRecipes)
       for (const ingredient of ingredients) {
-        if (ingredient.toLowerCase().includes(inputValue.toLowerCase())) {
-
-        }
+        
       }
     } else {
       createDropdownList(allRecipes)

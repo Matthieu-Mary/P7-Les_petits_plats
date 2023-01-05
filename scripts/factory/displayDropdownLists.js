@@ -4,14 +4,26 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
     let allIngredients = getIngredients(recipes);
     let allAppliances = getAppliances(recipes);
     let allUstensils = getUstensils(recipes);
-    
+
     // Display ingredients list
-    const dropdownIngredientsList = document.querySelector(
+    createIngredientsDropdown(allIngredients, currentFilter, selectedFiltersContainer);
+    // Display appliances list
+    createAppliancesDropdown(allAppliances, currentFilter, selectedFiltersContainer); 
+    // Display ustensils list
+    createUstensilsDropdown(allUstensils, currentFilter, selectedFiltersContainer);
+    
+  }
+
+  // CREATE DROPDOWN BY FILTER TYPE (INGREDIENT/APPLIANCES/USTENSILS)
+
+  // ----- INGREDIENTS -----
+  function createIngredientsDropdown(ingredients, currentFilter, selectedFiltersContainer) {
+     const dropdownIngredientsList = document.querySelector(
       ".ingredients .filter-list"
     );
     const ulIngredients = document.createElement("ul");
-    allIngredients
-      .filter((ingredient, index) => allIngredients.indexOf(ingredient) === index)
+    ingredients
+      .filter((ingredient, index) => ingredients.indexOf(ingredient) === index)
       .forEach((ingredient) => {
         const item = document.createElement("li");
         item.setAttribute("onclick", "updateRecipes(event)");
@@ -40,15 +52,16 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
       dropdownIngredientsList.removeChild(ulIngredients)
       dropdownIngredientsList.appendChild(ingredientsFail)
     }
-    
-  
-    // Display appliances list
+  }
+
+  //----- APPLIANCES -----
+  function createAppliancesDropdown(appliances, currentFilter, selectedFiltersContainer) {
     const dropdownAppliancesList = document.querySelector(
       ".appliances .filter-list"
     );
     const ulAppliances = document.createElement("ul");
-    allAppliances
-      .filter((appliance, index) => allAppliances.indexOf(appliance) === index)
+    appliances
+      .filter((appliance, index) => appliances.indexOf(appliance) === index)
       .forEach((appliance) => {
         const item = document.createElement("li");
         item.setAttribute("onclick", "updateRecipes(event)");
@@ -77,14 +90,16 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
         dropdownAppliancesList.removeChild(ulAppliances)
         dropdownAppliancesList.appendChild(applianceFail)
       }
-  
-    // Display ustensils list
+    }
+    
+    //----- USTENSILS -----
+  function createUstensilsDropdown(ustensils, currentFilter, selectedFiltersContainer) {
     const dropdownUstensilsList = document.querySelector(
       ".ustensils .filter-list"
     );
     const ulUstensils = document.createElement("ul");
-    allUstensils
-      .filter((ustensil, index) => allUstensils.indexOf(ustensil) === index)
+    ustensils
+      .filter((ustensil, index) => ustensils.indexOf(ustensil) === index)
       .forEach((ustensil) => {
         const item = document.createElement("li");
         item.setAttribute("onclick", "updateRecipes(event)");
@@ -115,7 +130,7 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
     }
   }
   
-  // FUNCTIONS TO DISPLAY FILTERS LIST ---------------------------------------------------
+  // <---------- FUNCTIONS TO DISPLAY FILTERS LIST ---------->
   function getIngredients(recipes) {
     let ingredientsArr = [];
     recipes.forEach((recipe) =>

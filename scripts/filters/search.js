@@ -9,31 +9,12 @@ function filterRecipesBySearchInput(e) {
   dropdownLists.forEach((dropdown) => (dropdown.innerHTML = ""));
   const searchedRecipe = e.target.value.toLowerCase().trim();
 
-  let searchResult = allRecipes;
-  // Start filtering by name, description and ingredients, only if value.length >= 3
+  let searchResult = [...allRecipes];
+
   if (e.target.value.length >= 3) {
-    // searchWithArrMethods(searchedRecipe, searchResult)
-    searchResult = allRecipes.filter(
-      (recipe) =>
-        recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
-        recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.toLowerCase().trim().includes(searchedRecipe)
-        )
-    );
-    
-    // Display message if no recipes founded
-    if (searchResult.length === 0) {
-      const failMessage = document.createElement("h3");
-      failMessage.classList.add("fail-message");
-      failMessage.textContent = `Aucune recette ne correspond à votre critère… vous pouvez
-        chercher "tarte aux pommes",  "poisson", etc`;
-      cardContainer.appendChild(failMessage);
-    }
-    createCard(searchResult);
-    createDropdownList(searchResult);
-    updatedRecipes(searchResult)
+    searchWithArrMethods(searchedRecipe, searchResult)
   } else {
+    cardContainer.style.display = "grid";
     createCard(searchResult);
     createDropdownList(searchResult);
     updatedRecipes(searchResult)
