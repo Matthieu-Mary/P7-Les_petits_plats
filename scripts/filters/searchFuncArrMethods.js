@@ -1,5 +1,5 @@
 function searchWithArrMethods(searchedRecipe, searchResult) {
-    searchResult = filteredRecipes.filter(
+    searchResult = searchResult.filter(
         (recipe) =>
           recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
           recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
