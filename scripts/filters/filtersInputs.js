@@ -35,21 +35,22 @@ function filterApplianceByInput(e) {
 }
 
 function filterUstensilsByInput(e) {
-  const inputValue = e.target.value.toLowerCase();
-  cardContainer.innerHTML = "";
-  filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
+  filtersInputsUsed = true;
+  const inputValue = e.target.value;
+  filtersLists[0].innerHTML = "";
+  console.log(filtersInputsUsed);
   if (inputValue.length >= 3) {
-    filteredRecipes = allRecipes.filter((recipe) => {
-      let hasUstensils = false;
-      recipe.ustensils.forEach((ustensil) => {
-        if (ustensil.toLowerCase().includes(inputValue)) {
-          hasUstensils = true;
-        }
-      });
-      return hasUstensils;
-    });
-    createDropdownList(filteredRecipes);
+    let ustensils = getUstensils(allRecipes);
+    allUstensils.splice(0, allUstensils.length);
+    filtersLists[2].innerHTML = "";
+    for (const ustensil of ustensils) {
+      if (ustensil.toLowerCase().includes(e.target.value.toLowerCase())) {
+        allUstensils.push(ustensil);  
+        createUstensilsDropdown(allUstensils)
+      }
+    }
   } else {
+    filtersInputsUsed = false;
     createDropdownList(allRecipes);
   }
 }

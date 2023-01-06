@@ -86,6 +86,7 @@ function createAppliancesDropdown(
     ".appliances .filter-list"
   );
   const ulAppliances = document.createElement("ul");
+  filtersLists[1].innerHTML = "";
   appliances
     .filter((appliance, index) => appliances.indexOf(appliance) === index)
     .forEach((appliance) => {
@@ -129,6 +130,7 @@ function createUstensilsDropdown(
     ".ustensils .filter-list"
   );
   const ulUstensils = document.createElement("ul");
+  filtersLists[2].innerHTML = "";
   ustensils
     .filter((ustensil, index) => ustensils.indexOf(ustensil) === index)
     .forEach((ustensil) => {
