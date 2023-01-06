@@ -4,7 +4,6 @@ function filterIngredientsByInput(e) {
   filtersInputsUsed = true;
   const inputValue = e.target.value;
   filtersLists[0].innerHTML = "";
-  console.log(filtersInputsUsed);
   if (inputValue.length >= 3) {
     let ingredients = getIngredients(allRecipes);
     allIngredients.splice(0, allIngredients.length);
