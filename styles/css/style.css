@@ -114,6 +114,9 @@ header h1 {
   border: none;
   border-radius: 5px 0 0 5px;
   outline: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
 }
 .filters .container-buttons-filters input::placeholder {
   color: white;
