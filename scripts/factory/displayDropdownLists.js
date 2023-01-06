@@ -5,11 +5,11 @@ let allUstensils = [];
 
 // CREATE LIST OF FILTERS
 function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
-  if (filtersInputsUsed === false) {
+  
     allIngredients = getIngredients(recipes);
     allAppliances = getAppliances(recipes);
     allUstensils = getUstensils(recipes);
-  } 
+
   // Display ingredients list
   createIngredientsDropdown(
     allIngredients,

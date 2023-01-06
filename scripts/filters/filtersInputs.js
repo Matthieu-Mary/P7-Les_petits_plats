@@ -1,7 +1,5 @@
-let filtersInputsUsed = false;
 // Functions for filters Inputs
 function filterIngredientsByInput(e) {
-  filtersInputsUsed = true;
   const inputValue = e.target.value;
   filtersLists[0].innerHTML = "";
   if (inputValue.length >= 3) {
@@ -15,7 +13,6 @@ function filterIngredientsByInput(e) {
       }
     }
   } else {
-    filtersInputsUsed = false;
     createDropdownList(allRecipes);
   }
 }
@@ -49,7 +46,6 @@ function filterUstensilsByInput(e) {
       }
     }
   } else {
-    filtersInputsUsed = false;
     createDropdownList(allRecipes);
   }
 }
