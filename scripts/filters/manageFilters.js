@@ -27,7 +27,7 @@ function updateRecipes(e) {
   // Add or remove filter based on whether it already exists
   if (selectedFiltersContainer.contains(currentFilter)) {
     selectedFiltersContainer.removeChild(currentFilter.parentNode);
-    filteredRecipes = [...allRecipes];
+    // filteredRecipes = [...allRecipes];
 
     if (selectedFiltersContainer.childElementCount === 0) {
       // Reset tags arrays
