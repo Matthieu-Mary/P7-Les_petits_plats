@@ -35,9 +35,9 @@ function updateRecipes(e) {
       filteredAppliancesByTag = [];
       filteredUstensilsByTag = [];
       
-      createCard(filteredRecipes);
+      createCard(recipes);
       createDropdownList(
-        filteredRecipes,
+        recipes,
         currentFilter,
         selectedFiltersContainer
       );
@@ -65,7 +65,7 @@ function updateRecipes(e) {
         filteredUstensilsByTag.splice(ustensilIndex, 1);
       }
       recipesTagFilter(
-        filteredRecipes,
+        recipes,
         currentFilter,
         selectedFiltersContainer
       );
@@ -86,13 +86,13 @@ function updateRecipes(e) {
       filteredUstensilsByTag.push(currentFilterText.toLowerCase());
     }
 
-    recipesTagFilter(filteredRecipes, currentFilter, selectedFiltersContainer);
+    recipesTagFilter(recipes, currentFilter, selectedFiltersContainer);
   }
 }
 
 // This function sort the recipes list by ingredients, appliances and ustensils filters tags
 function recipesTagFilter(
-  filteredRecipes,
+  recipes,
   currentFilter,
   selectedFiltersContainer
 ) {
@@ -101,7 +101,7 @@ function recipesTagFilter(
 
   // Filter cards
   let itemsFiltered = [];
-  itemsFiltered = filteredRecipes.filter(
+  itemsFiltered = recipes.filter(
     (items) =>
       [...filteredIngredientsByTag].every((ingredientSelected) =>
         items.ingredients.some(
