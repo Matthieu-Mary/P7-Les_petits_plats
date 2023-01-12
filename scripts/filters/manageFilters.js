@@ -27,20 +27,24 @@ function updateRecipes(e) {
   // Add or remove filter based on whether it already exists
   if (selectedFiltersContainer.contains(currentFilter)) {
     selectedFiltersContainer.removeChild(currentFilter.parentNode);
-    // filteredRecipes = [...allRecipes];
 
     if (selectedFiltersContainer.childElementCount === 0) {
       // Reset tags arrays
       filteredIngredientsByTag = [];
       filteredAppliancesByTag = [];
       filteredUstensilsByTag = [];
-      
-      createCard(recipes);
+
+      createCard(filteredRecipes);
       createDropdownList(
-        recipes,
+        filteredRecipes,
         currentFilter,
         selectedFiltersContainer
       );
+      if (search.value.length === 0) {
+        filteredRecipes = [...recipes];
+        createCard(recipes);
+        createDropdownList(recipes, currentFilter, selectedFiltersContainer);
+      }
     } else {
       // Delete filter from filtered ingredients, ustensils or appliances Arr, when its removed by user on DOM
       // INGREDIENTS ARR
@@ -64,11 +68,7 @@ function updateRecipes(e) {
       if (ustensilIndex !== -1) {
         filteredUstensilsByTag.splice(ustensilIndex, 1);
       }
-      recipesTagFilter(
-        recipes,
-        currentFilter,
-        selectedFiltersContainer
-      );
+      recipesTagFilter(recipes, currentFilter, selectedFiltersContainer);
     }
   } else {
     if (currentList.classList.contains("ingredients")) {
@@ -91,17 +91,13 @@ function updateRecipes(e) {
 }
 
 // This function sort the recipes list by ingredients, appliances and ustensils filters tags
-function recipesTagFilter(
-  recipes,
-  currentFilter,
-  selectedFiltersContainer
-) {
+function recipesTagFilter(recipes, currentFilter, selectedFiltersContainer) {
   cardContainer.innerHTML = "";
   filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
   // Filter cards
-  let itemsFiltered = [];
-  itemsFiltered = recipes.filter(
+  filteredRecipesByTags = [];
+  filteredRecipesByTags = recipes.filter(
     (items) =>
       [...filteredIngredientsByTag].every((ingredientSelected) =>
         items.ingredients.some(
@@ -116,7 +112,17 @@ function recipesTagFilter(
           items.appliance.toLowerCase() === applianceSelected
       )
   );
-  createCard(itemsFiltered);
-  createDropdownList(itemsFiltered, currentFilter, selectedFiltersContainer);
+
+  updatedRecipesByTags(filteredRecipesByTags);
+  createCard(filteredRecipes);
+  createDropdownList(filteredRecipes, currentFilter, selectedFiltersContainer);
 }
 
+setInterval(() => {
+  console.log("Recettes par TAGS");
+  console.log(filteredRecipesByTags);
+  console.log("Recettes par SEARCH");
+  console.log(filteredRecipesBySearch);
+  console.log("Recettes filtrées");
+  console.log(filteredRecipes);
+}, 10000);

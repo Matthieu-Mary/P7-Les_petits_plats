@@ -1,5 +1,5 @@
 function searchWithArrMethods(searchedRecipe, searchResult) {
-    searchResult = searchResult.filter(
+    searchResult = recipes.filter(
         (recipe) =>
           recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
           recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
@@ -19,7 +19,7 @@ function searchWithArrMethods(searchedRecipe, searchResult) {
       cardContainer.style.display = "grid";
     }
     
-    createCard(searchResult);
-    createDropdownList(searchResult);
-    updatedRecipes(searchResult)
+    updatedRecipesBySearch(searchResult)
+    createCard(filteredRecipes);
+    createDropdownList(filteredRecipes);
 }

@@ -9,21 +9,17 @@ function filterRecipesBySearchInput(e) {
   dropdownLists.forEach((dropdown) => (dropdown.innerHTML = ""));
   const searchedRecipe = e.target.value.toLowerCase().trim();
 
-  let searchResult = [...allRecipes];
+  filteredRecipesBySearch = [...filteredRecipes];
 
   if (e.target.value.length >= 3) {
-    searchWithArrMethods(searchedRecipe, searchResult)
+    searchWithArrMethods(searchedRecipe, filteredRecipesBySearch)
   } else {
     cardContainer.style.display = "grid";
-    createCard(searchResult);
-    createDropdownList(searchResult);
-    updatedRecipes(searchResult)
-  }
+    createCard(filteredRecipesBySearch);
+    createDropdownList(filteredRecipesBySearch);
+    updatedRecipesBySearch(filteredRecipesBySearch)
+  } 
 }
 
-// Bind searchbar with the filters list
-function updatedRecipes(searchResult) {
-  filteredRecipes = searchResult;
-  return filteredRecipes
-}
+
   
