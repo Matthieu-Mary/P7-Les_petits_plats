@@ -13,9 +13,9 @@ function filterRecipesBySearchInput(e) {
   if(filteredRecipesByTags.length !== recipes.length) {
     filteredRecipesBySearch = filteredRecipesByTags;
   }
-  
+  let searchResult;
   if (e.target.value.length >= 3) {
-    searchWithArrMethods(searchedRecipe);
+    searchWithArrMethods(searchedRecipe, searchResult);
   } else if (e.target.value.length === 0) {
     if(selectedFiltersContainer.childElementCount === 0) {
       filteredRecipesByTags = [...recipes];

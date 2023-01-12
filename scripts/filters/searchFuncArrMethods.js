@@ -1,5 +1,5 @@
-function searchWithArrMethods(searchedRecipe) {
-  let searchResult = filteredRecipesByTags.filter(
+function searchWithArrMethods(searchedRecipe, searchResult) {
+  searchResult = filteredRecipesByTags.filter(
         (recipe) =>
           recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
           recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
@@ -18,7 +18,7 @@ function searchWithArrMethods(searchedRecipe) {
     } else {
       cardContainer.style.display = "grid";
     }
-    filteredRecipesBySearch = searchResult;
+    filteredRecipesBySearch = searchResult
     createCard(searchResult);
     createDropdownList(searchResult);
 }
