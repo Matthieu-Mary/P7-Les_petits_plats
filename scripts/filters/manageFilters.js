@@ -1,5 +1,9 @@
 // -------------- MANAGE APPARITION OF SELECTED FILTERS IN THE DIV AND UPDATE LIST OF FILTERS AND CARD APPEARANCE---------------------
 const filtersLists = document.querySelectorAll(".filter-list");
+// Container of selected filters
+const selectedFiltersContainer = document.querySelector(
+  ".container-selected-filters"
+);
 
 // Array by filters Tags
 let filteredIngredientsByTag = [];
@@ -9,9 +13,6 @@ let filteredUstensilsByTag = [];
 // Updated recipes by click on add/delete filter is stored in this variable.
 function updateRecipes(e) {
   // Add filter to div
-  const selectedFiltersContainer = document.querySelector(
-    ".container-selected-filters"
-  );
   const currentFilter = e.currentTarget;
   const currentFilterText = currentFilter.textContent;
   const currentList = currentFilter.parentNode.parentNode.parentNode;
@@ -34,16 +35,15 @@ function updateRecipes(e) {
       filteredAppliancesByTag = [];
       filteredUstensilsByTag = [];
 
-      createCard(filteredRecipes);
-      createDropdownList(
-        filteredRecipes,
-        currentFilter,
-        selectedFiltersContainer
-      );
+      filteredRecipesByTags = [...recipes];
+
       if (search.value.length === 0) {
-        filteredRecipes = [...recipes];
+        filteredRecipesBySearch = [...recipes];
         createCard(recipes);
-        createDropdownList(recipes, currentFilter, selectedFiltersContainer);
+        createDropdownList(recipes, currentFilter);
+      } else {
+        createCard(filteredRecipesBySearch);
+        createDropdownList(filteredRecipesBySearch, currentFilter);
       }
     } else {
       // Delete filter from filtered ingredients, ustensils or appliances Arr, when its removed by user on DOM
@@ -68,7 +68,7 @@ function updateRecipes(e) {
       if (ustensilIndex !== -1) {
         filteredUstensilsByTag.splice(ustensilIndex, 1);
       }
-      recipesTagFilter(recipes, currentFilter, selectedFiltersContainer);
+      recipesTagFilter(currentFilter);
     }
   } else {
     if (currentList.classList.contains("ingredients")) {
@@ -86,18 +86,18 @@ function updateRecipes(e) {
       filteredUstensilsByTag.push(currentFilterText.toLowerCase());
     }
 
-    recipesTagFilter(recipes, currentFilter, selectedFiltersContainer);
+    recipesTagFilter(currentFilter);
   }
 }
 
 // This function sort the recipes list by ingredients, appliances and ustensils filters tags
-function recipesTagFilter(recipes, currentFilter, selectedFiltersContainer) {
+function recipesTagFilter(currentFilter) {
   cardContainer.innerHTML = "";
   filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
   // Filter cards
-  filteredRecipesByTags = [];
-  filteredRecipesByTags = recipes.filter(
+  itemsFiltered = [];
+  itemsFiltered = filteredRecipesBySearch.filter(
     (items) =>
       [...filteredIngredientsByTag].every((ingredientSelected) =>
         items.ingredients.some(
@@ -113,16 +113,14 @@ function recipesTagFilter(recipes, currentFilter, selectedFiltersContainer) {
       )
   );
 
-  updatedRecipesByTags(filteredRecipesByTags);
-  createCard(filteredRecipes);
-  createDropdownList(filteredRecipes, currentFilter, selectedFiltersContainer);
+  filteredRecipesByTags = [...itemsFiltered];
+  createCard(filteredRecipesByTags);
+  createDropdownList(filteredRecipesByTags, currentFilter);
 }
 
-setInterval(() => {
-  console.log("Recettes par TAGS");
-  console.log(filteredRecipesByTags);
-  console.log("Recettes par SEARCH");
-  console.log(filteredRecipesBySearch);
-  console.log("Recettes filtrées");
-  console.log(filteredRecipes);
-}, 10000);
+// setInterval(() => {
+//   console.log("Recettes par TAGS");
+//   console.log(filteredRecipesByTags);
+//   console.log("Recettes par SEARCH");
+//   console.log(filteredRecipesBySearch);
+// }, 5000);

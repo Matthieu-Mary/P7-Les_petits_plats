@@ -4,7 +4,7 @@ let allAppliances = [];
 let allUstensils = [];
 
 // CREATE LIST OF FILTERS
-function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
+function createDropdownList(recipes, currentFilter) {
   
     allIngredients = getIngredients(recipes);
     allAppliances = getAppliances(recipes);
@@ -13,20 +13,17 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
   // Display ingredients list
   createIngredientsDropdown(
     allIngredients,
-    currentFilter,
-    selectedFiltersContainer
+    currentFilter
   );
   // Display appliances list
   createAppliancesDropdown(
     allAppliances,
-    currentFilter,
-    selectedFiltersContainer
+    currentFilter
   );
   // Display ustensils list
   createUstensilsDropdown(
     allUstensils,
-    currentFilter,
-    selectedFiltersContainer
+    currentFilter
   );
 }
 
@@ -35,8 +32,7 @@ function createDropdownList(recipes, currentFilter, selectedFiltersContainer) {
 // ----- INGREDIENTS -----
 function createIngredientsDropdown(
   ingredients,
-  currentFilter,
-  selectedFiltersContainer
+  currentFilter
 ) {
   const dropdownIngredientsList = document.querySelector(
     ".ingredients .filter-list"
@@ -79,8 +75,7 @@ function createIngredientsDropdown(
 //----- APPLIANCES -----
 function createAppliancesDropdown(
   appliances,
-  currentFilter,
-  selectedFiltersContainer
+  currentFilter
 ) {
   const dropdownAppliancesList = document.querySelector(
     ".appliances .filter-list"
@@ -123,9 +118,8 @@ function createAppliancesDropdown(
 //----- USTENSILS -----
 function createUstensilsDropdown(
   ustensils,
-  currentFilter,
-  selectedFiltersContainer
-) {
+  currentFilter
+  ) {
   const dropdownUstensilsList = document.querySelector(
     ".ustensils .filter-list"
   );

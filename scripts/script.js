@@ -1,19 +1,5 @@
-let filteredRecipes = [...recipes];
-let filteredRecipesBySearch;
-let filteredRecipesByTags;
-
-
-// Bind searchbar with the filters list
-function updatedRecipesBySearch(filteredRecipesBySearch) {
-  filteredRecipesByTags = filteredRecipesBySearch;
-  filteredRecipes = filteredRecipesByTags
-}
-
-function updatedRecipesByTags(filteredRecipesByTags) {
-  filteredRecipesBySearch = filteredRecipesByTags;
-  filteredRecipes = filteredRecipesBySearch;
-}
-
+let filteredRecipesBySearch = [...recipes];
+let filteredRecipesByTags = [...recipes];
 
 // FIRST RENDER
 function initRecipes() {

@@ -9,17 +9,19 @@ function filterRecipesBySearchInput(e) {
   dropdownLists.forEach((dropdown) => (dropdown.innerHTML = ""));
   const searchedRecipe = e.target.value.toLowerCase().trim();
 
-  filteredRecipesBySearch = [...filteredRecipes];
-
+  // Verifiy if a tag is selected before starting search !
+  if(filteredRecipesByTags.length !== recipes.length) {
+    filteredRecipesBySearch = filteredRecipesByTags;
+  }
+  
   if (e.target.value.length >= 3) {
-    searchWithArrMethods(searchedRecipe, filteredRecipesBySearch)
+    searchWithArrMethods(searchedRecipe);
+  } else if (e.target.value.length === 0 && selectedFiltersContainer.childElementCount === 0) {
+      createCard(recipes);
+      createDropdownList(recipes);
   } else {
     cardContainer.style.display = "grid";
     createCard(filteredRecipesBySearch);
     createDropdownList(filteredRecipesBySearch);
-    updatedRecipesBySearch(filteredRecipesBySearch)
-  } 
+  }
 }
-
-
-  
