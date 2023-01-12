@@ -114,8 +114,8 @@ function recipesTagFilter(currentFilter) {
   );
 
   filteredRecipesByTags = [...itemsFiltered];
-  createCard(filteredRecipesByTags);
-  createDropdownList(filteredRecipesByTags, currentFilter);
+  createCard(itemsFiltered);
+  createDropdownList(itemsFiltered, currentFilter);
 }
 
 // setInterval(() => {

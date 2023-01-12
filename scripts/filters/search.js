@@ -16,12 +16,19 @@ function filterRecipesBySearchInput(e) {
   
   if (e.target.value.length >= 3) {
     searchWithArrMethods(searchedRecipe);
-  } else if (e.target.value.length === 0 && selectedFiltersContainer.childElementCount === 0) {
+  } else if (e.target.value.length === 0) {
+    if(selectedFiltersContainer.childElementCount === 0) {
+      filteredRecipesByTags = [...recipes];
       createCard(recipes);
       createDropdownList(recipes);
-  } else {
+    } else {
+      filteredRecipesBySearch = [...recipes];
+      createCard(filteredRecipesByTags);
+      createDropdownList(filteredRecipesByTags);
+    }
+  } else { //input value length egual to 1 or 2
     cardContainer.style.display = "grid";
-    createCard(filteredRecipesBySearch);
-    createDropdownList(filteredRecipesBySearch);
+    createCard(filteredRecipesByTags);
+    createDropdownList(filteredRecipesByTags);
   }
 }
