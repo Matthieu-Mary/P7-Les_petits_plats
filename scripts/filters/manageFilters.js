@@ -32,20 +32,19 @@ function updateRecipes(e) {
 
     if (selectedFiltersContainer.childElementCount === 0) {
       // Reset tags arrays
+      
       filteredIngredientsByTag = [];
       filteredAppliancesByTag = [];
       filteredUstensilsByTag = [];
 
       filteredRecipesByTags = [...recipes];
+      filteredRecipesBySearch = [...recipes];
 
       if (search.value.length === 0) {
-        filteredRecipesBySearch = [...recipes];
-        createCard(recipes);
-        createDropdownList(recipes, currentFilter);
-      } else {
         createCard(filteredRecipesBySearch);
         createDropdownList(filteredRecipesBySearch, currentFilter);
       }
+      recipesTagFilter(currentFilter)
     } else {
       // Delete filter from filtered ingredients, ustensils or appliances Arr, when its removed by user on DOM
       // INGREDIENTS ARR
@@ -140,5 +139,8 @@ function recipesTagFilter(currentFilter) {
 }
 
 
-
+// setInterval(() => {
+//   console.log(filteredRecipesByTags)
+//   console.log(recipes)
+// }, 5000)
 

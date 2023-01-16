@@ -13,22 +13,18 @@ function filterRecipesBySearchInput(e) {
   if(filteredRecipesByTags.length !== recipes.length) {
     filteredRecipesBySearch = filteredRecipesByTags;
   }
-  let searchResult;
+
   if (e.target.value.length >= 3) {
-    searchWithArrMethods(searchedRecipe, searchResult);
-  } else if (e.target.value.length === 0) {
-    if(selectedFiltersContainer.childElementCount === 0) {
-      filteredRecipesByTags = [...recipes];
-      createCard(recipes);
-      createDropdownList(recipes);
-    } else {
-      filteredRecipesBySearch = [...recipes];
-      createCard(filteredRecipesByTags);
-      createDropdownList(filteredRecipesByTags);
-    }
-  } else { //input value length egual to 1 or 2
+    searchWithArrMethods(searchedRecipe);
+  } else {
     cardContainer.style.display = "grid";
+    filteredRecipesBySearch = [...recipes];
     createCard(filteredRecipesByTags);
     createDropdownList(filteredRecipesByTags);
-  }
+    if(selectedFiltersContainer.childElementCount === 0) {
+      filteredRecipesByTags = [...recipes];
+      createCard(filteredRecipesByTags);
+      createDropdownList(filteredRecipesByTags);
+    } 
+  } 
 }

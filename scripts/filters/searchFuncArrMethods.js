@@ -1,5 +1,5 @@
-function searchWithArrMethods(searchedRecipe, searchResult) {
-  searchResult = filteredRecipesByTags.filter(
+function searchWithArrMethods(searchedRecipe) {
+  const searchResult = filteredRecipesByTags.filter(
         (recipe) =>
           recipe.name.toLowerCase().trim().includes(searchedRecipe) ||
           recipe.description.toLowerCase().trim().includes(searchedRecipe) ||
@@ -13,12 +13,12 @@ function searchWithArrMethods(searchedRecipe, searchResult) {
       cardContainer.style.display = "flex";
       failMessage.classList.add("fail-message");
       failMessage.textContent = `Aucune recette ne correspond à votre critère… vous pouvez
-        chercher "tarte aux pommes",  "poisson", etc`;
+        chercher "tarte aux pommes", "poisson", etc`;
       cardContainer.appendChild(failMessage);
     } else {
       cardContainer.style.display = "grid";
     }
-    filteredRecipesBySearch = searchResult
+    filteredRecipesBySearch = searchResult;
     createCard(searchResult);
     createDropdownList(searchResult);
 }
