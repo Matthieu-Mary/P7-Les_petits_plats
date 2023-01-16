@@ -23,6 +23,7 @@ function filterRecipesBySearchInput(e) {
     createDropdownList(filteredRecipesByTags);
     if(selectedFiltersContainer.childElementCount === 0) {
       filteredRecipesByTags = [...recipes];
+      cardContainer.innerHTML = "";
       createCard(filteredRecipesByTags);
       createDropdownList(filteredRecipesByTags);
     } 
