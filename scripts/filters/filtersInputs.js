@@ -1,3 +1,10 @@
+// Get all input filters
+const inputFilters = document.querySelectorAll(".filter input");
+
+let allIngredientsByInput = [];
+let allAppliancesByInput = [];
+let allUstensilsByInput = [];
+
 // Functions for filters Inputs
 function filterIngredientsByInput(e) {
   const inputValue = e.target.value;
@@ -7,6 +14,7 @@ function filterIngredientsByInput(e) {
   for (const ingredient of ingredients) {
     if (ingredient.toLowerCase().includes(inputValue.toLowerCase())) {
       recipes.push(ingredient);
+      allIngredientsByInput = [...recipes];
       createIngredientsDropdown(recipes);
     }
   }
@@ -20,6 +28,7 @@ function filterApplianceByInput(e) {
     for (const appliance of appliances) {
       if (appliance.toLowerCase().includes(inputValue.toLowerCase())) {
         recipes.push(appliance);
+        allAppliancesByInput = [...recipes];
         createAppliancesDropdown(recipes);
       }
     }
@@ -34,6 +43,7 @@ function filterUstensilsByInput(e) {
   for (const ustensil of ustensils) {
     if (ustensil.toLowerCase().includes(inputValue.toLowerCase())) {
       recipes.push(ustensil);
+      allUstensilsByInput = [...recipes];
       createUstensilsDropdown(recipes);
     }
   }

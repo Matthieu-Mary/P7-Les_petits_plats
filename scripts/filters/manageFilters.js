@@ -116,8 +116,29 @@ function recipesTagFilter(currentFilter) {
 
   filteredRecipesByTags = [...itemsFiltered];
   createCard(itemsFiltered);
-  console.log(itemsFiltered)
-  createDropdownList(itemsFiltered, currentFilter);
+  if (inputFilters[0].value !== "") {
+    createIngredientsDropdown(allIngredientsByInput)
+    const appliances = getAppliances(itemsFiltered)
+    createAppliancesDropdown(appliances)
+    const ustensils = getUstensils(itemsFiltered)
+    createUstensilsDropdown(ustensils)
+  } else if (inputFilters[1].value !== "") {
+    const ingredients = getIngredients(itemsFiltered)
+    createIngredientsDropdown(ingredients)
+    createAppliancesDropdown(allAppliancesByInput)
+    const ustensils = getUstensils(itemsFiltered)
+    createUstensilsDropdown(ustensils)
+  } else if (inputFilters[2].value !== "") {
+    const ingredients = getIngredients(itemsFiltered)
+    createIngredientsDropdown(ingredients)
+    const appliances = getAppliances(itemsFiltered)
+    createAppliancesDropdown(appliances)
+    createUstensilsDropdown(allUstensilsByInput)
+  } else {
+    createDropdownList(itemsFiltered, currentFilter);
+  }
 }
+
+
 
 

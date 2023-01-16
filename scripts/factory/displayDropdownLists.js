@@ -1,7 +1,7 @@
 // GET LISTS
-let allIngredients = getIngredients(recipes);
-let allAppliances = getAppliances(recipes);
-let allUstensils = getUstensils(recipes);
+let allIngredientsByTags = [];
+let allAppliancesByTags = [];
+let allUstensilsByTags = [];
 
 // <---------- FUNCTIONS TO DISPLAY FILTERS LIST ---------->
 function getIngredients(recipes) {
@@ -30,21 +30,26 @@ function getUstensils(recipes) {
 // ---------------------------------------------------------------------------------------
 
 // CREATE LIST OF FILTERS
-function createDropdownList(currentFilter) {
+function createDropdownList(currentRecipes, currentFilter) {
+
+  allIngredientsByTags = getIngredients(currentRecipes);
+  allAppliancesByTags = getAppliances(currentRecipes);
+  allUstensilsByTags = getUstensils(currentRecipes); 
+
 
   // Display ingredients list
   createIngredientsDropdown(
-    allIngredients,
+    allIngredientsByTags,
     currentFilter
   );
   // Display appliances list
   createAppliancesDropdown(
-    allAppliances,
+    allAppliancesByTags,
     currentFilter
   );
   // Display ustensils list
   createUstensilsDropdown(
-    allUstensils,
+    allUstensilsByTags,
     currentFilter
   );
 }
