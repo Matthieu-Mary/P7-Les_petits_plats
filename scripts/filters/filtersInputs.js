@@ -20,7 +20,6 @@ function filterIngredientsByInput(e) {
     }
   } else {
     allIngredientsByInput = getIngredients(filteredRecipesBySearch);
-    console.log(allIngredientsByInput)
     createIngredientsDropdown(allIngredientsByInput);
   }
 }

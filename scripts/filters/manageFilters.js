@@ -38,9 +38,9 @@ function updateRecipes(e) {
       filteredUstensilsByTag = [];
 
       filteredRecipesByTags = [...recipes];
-      filteredRecipesBySearch = [...recipes];
-
+      
       if (search.value.length === 0) {
+        filteredRecipesBySearch = [...recipes];
         createCard(filteredRecipesBySearch);
         createDropdownList(filteredRecipesBySearch, currentFilter);
       }
