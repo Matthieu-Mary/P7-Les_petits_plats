@@ -10,6 +10,7 @@ let filteredIngredientsByTag = [];
 let filteredAppliancesByTag = [];
 let filteredUstensilsByTag = [];
 
+
 // Updated recipes by click on add/delete filter is stored in this variable.
 function updateRecipes(e) {
   // Add filter to div
@@ -115,6 +116,7 @@ function recipesTagFilter(currentFilter) {
 
   filteredRecipesByTags = [...itemsFiltered];
   createCard(itemsFiltered);
+  console.log(itemsFiltered)
   createDropdownList(itemsFiltered, currentFilter);
 }
 

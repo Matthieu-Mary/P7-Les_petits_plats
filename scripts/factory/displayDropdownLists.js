@@ -56,7 +56,6 @@ function createIngredientsDropdown(
   ingredients,
   currentFilter
 ) {
-  console.log(ingredients)
   const dropdownIngredientsList = document.querySelector(
     ".ingredients .filter-list"
   );
