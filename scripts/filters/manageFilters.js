@@ -118,9 +118,4 @@ function recipesTagFilter(currentFilter) {
   createDropdownList(itemsFiltered, currentFilter);
 }
 
-// setInterval(() => {
-//   console.log("Recettes par TAGS");
-//   console.log(filteredRecipesByTags);
-//   console.log("Recettes par SEARCH");
-//   console.log(filteredRecipesBySearch);
-// }, 5000);
+

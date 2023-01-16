@@ -1,14 +1,36 @@
 // GET LISTS
-let allIngredients = [];
-let allAppliances = [];
-let allUstensils = [];
+let allIngredients = getIngredients(recipes);
+let allAppliances = getAppliances(recipes);
+let allUstensils = getUstensils(recipes);
+
+// <---------- FUNCTIONS TO DISPLAY FILTERS LIST ---------->
+function getIngredients(recipes) {
+  let ingredientsArr = [];
+  recipes.forEach((recipe) =>
+    recipe.ingredients.forEach((ingredient) =>
+      ingredientsArr.push(ingredient.ingredient)
+    )
+  );
+  return ingredientsArr;
+}
+
+function getAppliances(recipes) {
+  let appliancesArr = [];
+  recipes.forEach((recipe) => appliancesArr.push(recipe.appliance));
+  return appliancesArr;
+}
+
+function getUstensils(recipes) {
+  let ustensilsArr = [];
+  recipes.forEach((recipe) =>
+    recipe.ustensils.forEach((ustensil) => ustensilsArr.push(ustensil))
+  );
+  return ustensilsArr;
+}
+// ---------------------------------------------------------------------------------------
 
 // CREATE LIST OF FILTERS
-function createDropdownList(recipes, currentFilter) {
-  
-    allIngredients = getIngredients(recipes);
-    allAppliances = getAppliances(recipes);
-    allUstensils = getUstensils(recipes);
+function createDropdownList(currentFilter) {
 
   // Display ingredients list
   createIngredientsDropdown(
@@ -34,6 +56,7 @@ function createIngredientsDropdown(
   ingredients,
   currentFilter
 ) {
+  console.log(ingredients)
   const dropdownIngredientsList = document.querySelector(
     ".ingredients .filter-list"
   );
@@ -158,28 +181,3 @@ function createUstensilsDropdown(
   }
 }
 
-// <---------- FUNCTIONS TO DISPLAY FILTERS LIST ---------->
-function getIngredients(recipes) {
-  let ingredientsArr = [];
-  recipes.forEach((recipe) =>
-    recipe.ingredients.forEach((ingredient) =>
-      ingredientsArr.push(ingredient.ingredient)
-    )
-  );
-  return ingredientsArr;
-}
-
-function getAppliances(recipes) {
-  let appliancesArr = [];
-  recipes.forEach((recipe) => appliancesArr.push(recipe.appliance));
-  return appliancesArr;
-}
-
-function getUstensils(recipes) {
-  let ustensilsArr = [];
-  recipes.forEach((recipe) =>
-    recipe.ustensils.forEach((ustensil) => ustensilsArr.push(ustensil))
-  );
-  return ustensilsArr;
-}
-// ---------------------------------------------------------------------------------------
