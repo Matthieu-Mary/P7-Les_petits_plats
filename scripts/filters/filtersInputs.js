@@ -32,7 +32,7 @@ function filterIngredientsByInput(e) {
 function filterApplianceByInput(e) {
   const inputValue = e.target.value.toLowerCase();
   filtersLists[1].innerHTML = "";
-  let appliances;;
+  let appliances;
   if (search.value.length > 2) {
     appliances = getAppliances(filteredRecipesBySearch);
   } else {
