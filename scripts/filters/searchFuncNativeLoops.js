@@ -33,5 +33,4 @@ function searchWithNativeLoops(searchedRecipe, searchResult) {
   }
   createCard(searchResult);
   createDropdownList(searchResult);
-  updatedRecipes(searchResult)
 }
