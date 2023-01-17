@@ -31,6 +31,7 @@ function searchWithNativeLoops(searchedRecipe, searchResult) {
   } else {
     cardContainer.style.display = "grid";
   }
+  filteredRecipesBySearch = searchResult;
   createCard(searchResult);
   createDropdownList(searchResult);
 }
