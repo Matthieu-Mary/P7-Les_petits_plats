@@ -14,8 +14,9 @@ function filterRecipesBySearchInput(e) {
     filteredRecipesBySearch = filteredRecipesByTags;
   }
 
+  let searchResult = [];
   if (e.target.value.length >= 3) {
-    searchWithArrMethods(searchedRecipe);
+    searchWithNativeLoops(searchedRecipe, searchResult);
   } else {
     cardContainer.style.display = "grid";
     filteredRecipesBySearch = [...recipes];
