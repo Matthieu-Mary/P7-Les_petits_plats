@@ -1,4 +1,3 @@
-let allRecipes = [...recipes]
 let filteredRecipesBySearch = [...recipes];
 let filteredRecipesByTags = [...recipes];
 

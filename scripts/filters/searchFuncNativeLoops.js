@@ -1,6 +1,6 @@
 function searchWithNativeLoops(searchedRecipe, searchResult) {
-  for (let i = 0; i < allRecipes.length; i++) {
-      const recipe = allRecipes[i];
+  for (let i = 0; i < recipes.length; i++) {
+      const recipe = recipes[i];
       let includeRecipe = false;
   
       if (recipe.name.toLowerCase().trim().includes(searchedRecipe)) {
