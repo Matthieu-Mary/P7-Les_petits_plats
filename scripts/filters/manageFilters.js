@@ -41,7 +41,7 @@ function updateRecipes(e) {
       if (search.value.length === 0) {
         filteredRecipesBySearch = [...recipes];
         createCard(filteredRecipesBySearch);
-        createDropdownList(filteredRecipesBySearch, currentFilter);
+        createDropdownList(filteredRecipesBySearch);
       }
       recipesTagFilter(currentFilter);
     } else {
@@ -132,6 +132,6 @@ function recipesTagFilter(currentFilter) {
     createAppliancesDropdown(appliances);
     createUstensilsDropdown(allUstensilsByInput);
   } else {
-    createDropdownList(itemsFiltered, currentFilter);
+    createDropdownList(itemsFiltered);
   }
 }
