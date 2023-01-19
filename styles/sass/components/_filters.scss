@@ -1,141 +1,187 @@
 .filters {
-    margin: 1rem 0;
-    .container-selected-filters {
-        display: flex;
-        span {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            margin-left: 10px;
-            color: white;
-            img {
-                margin-left: 10px;
-                cursor: pointer;
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
+  margin: 1rem 0;
+  .container-selected-filters {
+    display: flex;
+    span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-left: 10px;
+      color: white;
+      img {
+        margin-left: 10px;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.1);
         }
+      }
     }
-    .container-buttons-filters {
+  }
+  .container-buttons-filters {
+    display: flex;
+    margin: 1rem 0;
+    .filter {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 1rem;
+      width: 170px;
+      height: 70px;
+      &:nth-child(2) {
+        margin-left: 1rem;
+      }
+      &:nth-child(3) {
+        margin-left: 1rem;
+      }
+    }
+    input {
+      width: 130px;
+      height: 100%;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      &::placeholder {
+        color: white;
+        border: none;
+        font-family: var(--font-lato);
+        font-size: 18px;
+        font-weight: 700;
+      }
+    }
+    .ingredients input,
+    .ingredients button {
+      background-color: var(--blue);
+    }
+    .appliances input,
+    .appliances button {
+      background-color: var(--green);
+    }
+    .ustensils input,
+    .ustensils button {
+      background-color: var(--orange);
+    }
+    .open-filter-list {
+      width: 40px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        border-radius: 0 5px 5px 0;
+        border: none;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        img {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    .ingredients .filter-list {
+      background-color: var(--blue);
+    }
+    .appliances .filter-list {
+      background-color: var(--green);
+    }
+    .ustensils .filter-list {
+      background-color: var(--orange);
+    }
+    .filter-list {
+      position: absolute;
+      top: calc(100% - 5px);
+      z-index: 2;
+      color: white;
+      font-size: 18px;
+      line-height: 22px;
+      border-radius: 0 0 5px 5px;
+      display: none;
+      width: 600px;
+      ul {
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        overflow: auto;
+        padding-bottom: 10px;
+        li {
+          margin-left: 1rem;
+          padding: 0.25rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.75;
+          }
+        }
+      }
+      .no-more-filter {
+        padding: 20px;
+      }
+    }
+    .dropdown-open {
+      width: 600px;
+      input {
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        width: 100%;
+      }
+      button {
+        img {
+          transform: rotate(0deg);
+        }
+      }
+      .filter-list {
         display: flex;
-        margin: 1rem 0;
-        .filter {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-right: 1rem;
-            width: 170px;
-            height: 70px;
-            &:nth-child(2) {
-                margin-left: 1rem;
-            }
-            &:nth-child(3) {
-                margin-left: 1rem;
-            }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .filters {
+    .container-buttons-filters {
+      .filter-list {
+        width: 400px;
+        ul {
+          grid-template-columns: 200px 200px;
         }
-        input {
-            width: 130px;
-            height: 100%;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            &::placeholder {
-                color: white;
-                border: none;
-                font-family: var(--font-lato);
-                font-size: 18px;
-                font-weight: 700;
-            }
-        }
-        .ingredients input,.ingredients button {
-            background-color: var(--blue);
-        }
-        .appliances input,.appliances button {
-            background-color: var(--green);
-        }
-        .ustensils input,.ustensils button {
-            background-color: var(--orange);
-        }
-        .open-filter-list {
-            width: 40px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            button {
-                border-radius: 0 5px 5px 0;
-                border: none;
-                height: 100%;
-                width: 100%;
-                cursor: pointer;
-                img {
-                    transform: rotate(180deg);
-                }
-            }
-        }
-        .ingredients .filter-list {
-            background-color: var(--blue);
-        }
-        .appliances .filter-list {
-            background-color: var(--green);
-        }
-        .ustensils .filter-list {
-            background-color: var(--orange);
-        }
+      }
+      .dropdown-open {
+        width: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 914px) {
+    .filters {
+      .container-selected-filters {
+        flex-wrap: wrap;
+      }
+      .container-buttons-filters {
         .filter-list {
-            position: absolute;
-            top: calc(100% - 5px);
-            z-index: 2;
-            color: white;
-            font-size: 18px;
-            line-height: 22px;
-            border-radius: 0 0 5px 5px;
-            display: none;
-            width: 600px;
-            ul {
-                display: grid;
-                grid-template-columns: 200px 200px 200px;
-                overflow: auto;
-                padding-bottom: 10px;
-                li {
-                    margin-left: 1rem;
-                    padding: 0.25rem;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    cursor: pointer;
-                    &:hover {
-                        opacity: 0.75;
-                    }
-                }
-            }
-            .no-more-filter {
-                padding: 20px;
-            }
+          width: 200px;
+          ul {
+            grid-template-columns: 200px;
+          }
         }
         .dropdown-open {
-            width: 600px;
-            input {
-                color: white;
-                font-weight: bold;
-                font-size: 18px;
-                width: 100%;
-            }
-            button {
-                img {
-                    transform: rotate(0deg);
-                }
-            }
-            .filter-list {
-                display: flex;
-            }
+          width: 200px;
         }
+      }
     }
-}
+  }
+
+@media screen and (max-width: 767px) {
+    .filters {
+      .container-buttons-filters {
+        flex-wrap: wrap;
+      }
+    }
+  }

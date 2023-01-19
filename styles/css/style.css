@@ -125,13 +125,16 @@ header h1 {
   font-size: 18px;
   font-weight: 700;
 }
-.filters .container-buttons-filters .ingredients input, .filters .container-buttons-filters .ingredients button {
+.filters .container-buttons-filters .ingredients input,
+.filters .container-buttons-filters .ingredients button {
   background-color: var(--blue);
 }
-.filters .container-buttons-filters .appliances input, .filters .container-buttons-filters .appliances button {
+.filters .container-buttons-filters .appliances input,
+.filters .container-buttons-filters .appliances button {
   background-color: var(--green);
 }
-.filters .container-buttons-filters .ustensils input, .filters .container-buttons-filters .ustensils button {
+.filters .container-buttons-filters .ustensils input,
+.filters .container-buttons-filters .ustensils button {
   background-color: var(--orange);
 }
 .filters .container-buttons-filters .open-filter-list {
@@ -207,6 +210,36 @@ header h1 {
   display: flex;
 }
 
+@media screen and (max-width: 1150px) {
+  .filters .container-buttons-filters .filter-list {
+    width: 400px;
+  }
+  .filters .container-buttons-filters .filter-list ul {
+    grid-template-columns: 200px 200px;
+  }
+  .filters .container-buttons-filters .dropdown-open {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 914px) {
+  .filters .container-selected-filters {
+    flex-wrap: wrap;
+  }
+  .filters .container-buttons-filters .filter-list {
+    width: 200px;
+  }
+  .filters .container-buttons-filters .filter-list ul {
+    grid-template-columns: 200px;
+  }
+  .filters .container-buttons-filters .dropdown-open {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .filters .container-buttons-filters {
+    flex-wrap: wrap;
+  }
+}
 .recipes {
   margin-top: 2rem;
   display: grid;
@@ -296,6 +329,17 @@ header h1 {
   width: 500px;
   text-align: center;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .recipes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 767px) {
+  .recipes {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
