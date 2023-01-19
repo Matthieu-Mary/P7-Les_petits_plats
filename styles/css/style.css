@@ -235,9 +235,22 @@ header h1 {
     width: 200px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 660px) {
   .filters .container-buttons-filters {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.25rem auto 0;
+  }
+  .filters .container-buttons-filters .filter {
+    margin-top: 1rem;
+    margin-right: 0;
+  }
+  .filters .container-buttons-filters .filter:nth-child(2) {
+    margin-left: 0;
+  }
+  .filters .container-buttons-filters .filter:nth-child(3) {
+    margin-left: 0;
   }
 }
 .recipes {
