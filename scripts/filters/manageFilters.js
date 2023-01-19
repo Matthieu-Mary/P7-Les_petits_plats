@@ -10,7 +10,6 @@ let filteredIngredientsByTag = [];
 let filteredAppliancesByTag = [];
 let filteredUstensilsByTag = [];
 
-
 // Updated recipes by click on add/delete filter is stored in this variable.
 function updateRecipes(e) {
   // Add filter to div
@@ -32,19 +31,19 @@ function updateRecipes(e) {
 
     if (selectedFiltersContainer.childElementCount === 0) {
       // Reset tags arrays
-      
+
       filteredIngredientsByTag = [];
       filteredAppliancesByTag = [];
       filteredUstensilsByTag = [];
 
       filteredRecipesByTags = [...recipes];
-      
+
       if (search.value.length === 0) {
         filteredRecipesBySearch = [...recipes];
         createCard(filteredRecipesBySearch);
         createDropdownList(filteredRecipesBySearch, currentFilter);
       }
-      recipesTagFilter(currentFilter)
+      recipesTagFilter(currentFilter);
     } else {
       // Delete filter from filtered ingredients, ustensils or appliances Arr, when its removed by user on DOM
       // INGREDIENTS ARR
@@ -85,7 +84,6 @@ function updateRecipes(e) {
       selectedFiltersContainer.appendChild(selectedFilter);
       filteredUstensilsByTag.push(currentFilterText.toLowerCase());
     }
-
     recipesTagFilter(currentFilter);
   }
 }
@@ -116,31 +114,24 @@ function recipesTagFilter(currentFilter) {
   filteredRecipesByTags = [...itemsFiltered];
   createCard(itemsFiltered);
   if (inputFilters[0].value !== "") {
-    createIngredientsDropdown(allIngredientsByInput)
-    const appliances = getAppliances(itemsFiltered)
-    createAppliancesDropdown(appliances)
-    const ustensils = getUstensils(itemsFiltered)
-    createUstensilsDropdown(ustensils)
+    createIngredientsDropdown(allIngredientsByInput);
+    const appliances = getAppliances(itemsFiltered);
+    createAppliancesDropdown(appliances);
+    const ustensils = getUstensils(itemsFiltered);
+    createUstensilsDropdown(ustensils);
   } else if (inputFilters[1].value !== "") {
-    const ingredients = getIngredients(itemsFiltered)
-    createIngredientsDropdown(ingredients)
-    createAppliancesDropdown(allAppliancesByInput)
-    const ustensils = getUstensils(itemsFiltered)
-    createUstensilsDropdown(ustensils)
+    const ingredients = getIngredients(itemsFiltered);
+    createIngredientsDropdown(ingredients);
+    createAppliancesDropdown(allAppliancesByInput);
+    const ustensils = getUstensils(itemsFiltered);
+    createUstensilsDropdown(ustensils);
   } else if (inputFilters[2].value !== "") {
-    const ingredients = getIngredients(itemsFiltered)
-    createIngredientsDropdown(ingredients)
-    const appliances = getAppliances(itemsFiltered)
-    createAppliancesDropdown(appliances)
-    createUstensilsDropdown(allUstensilsByInput)
+    const ingredients = getIngredients(itemsFiltered);
+    createIngredientsDropdown(ingredients);
+    const appliances = getAppliances(itemsFiltered);
+    createAppliancesDropdown(appliances);
+    createUstensilsDropdown(allUstensilsByInput);
   } else {
     createDropdownList(itemsFiltered, currentFilter);
   }
 }
-
-
-// setInterval(() => {
-//   console.log(filteredRecipesByTags)
-//   console.log(recipes)
-// }, 5000)
-

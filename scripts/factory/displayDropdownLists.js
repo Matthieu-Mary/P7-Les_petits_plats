@@ -30,37 +30,24 @@ function getUstensils(recipes) {
 // ---------------------------------------------------------------------------------------
 
 // CREATE LIST OF FILTERS
-function createDropdownList(currentRecipes, currentFilter) {
-
+function createDropdownList(currentRecipes) {
   allIngredientsByTags = getIngredients(currentRecipes);
   allAppliancesByTags = getAppliances(currentRecipes);
-  allUstensilsByTags = getUstensils(currentRecipes); 
-
+  allUstensilsByTags = getUstensils(currentRecipes);
 
   // Display ingredients list
-  createIngredientsDropdown(
-    allIngredientsByTags,
-    currentFilter
-  );
+  createIngredientsDropdown(allIngredientsByTags);
   // Display appliances list
-  createAppliancesDropdown(
-    allAppliancesByTags,
-    currentFilter
-  );
+  createAppliancesDropdown(allAppliancesByTags);
   // Display ustensils list
-  createUstensilsDropdown(
-    allUstensilsByTags,
-    currentFilter
-  );
+  createUstensilsDropdown(allUstensilsByTags);
 }
 
 // CREATE DROPDOWN BY FILTER TYPE (INGREDIENT/APPLIANCES/USTENSILS)
 
 // ----- INGREDIENTS -----
-function createIngredientsDropdown(
-  ingredients,
-  currentFilter
-) {
+function createIngredientsDropdown(ingredients) {
+  const allIngredients = getIngredients(recipes);
   const dropdownIngredientsList = document.querySelector(
     ".ingredients .filter-list"
   );
@@ -74,7 +61,7 @@ function createIngredientsDropdown(
       item.textContent = ingredient;
       ulIngredients.appendChild(item);
       // If a filter is selected, this filter is removed from the list
-      if (currentFilter) {
+      if (ingredients.length !== allIngredients.length) {
         let hasFilter = false;
         selectedFiltersContainer.querySelectorAll("span").forEach((element) => {
           if (
@@ -100,10 +87,8 @@ function createIngredientsDropdown(
 }
 
 //----- APPLIANCES -----
-function createAppliancesDropdown(
-  appliances,
-  currentFilter
-) {
+function createAppliancesDropdown(appliances) {
+  const allAppliance = getAppliances(recipes);
   const dropdownAppliancesList = document.querySelector(
     ".appliances .filter-list"
   );
@@ -117,7 +102,7 @@ function createAppliancesDropdown(
       item.textContent = appliance;
       ulAppliances.appendChild(item);
       // If a filter is selected, this filter is removed from the list
-      if (currentFilter) {
+      if (appliance.length !== allAppliance.length) {
         let hasFilter = false;
         selectedFiltersContainer.querySelectorAll("span").forEach((element) => {
           if (
@@ -143,10 +128,8 @@ function createAppliancesDropdown(
 }
 
 //----- USTENSILS -----
-function createUstensilsDropdown(
-  ustensils,
-  currentFilter
-  ) {
+function createUstensilsDropdown(ustensils) {
+  const allUstensils = getUstensils(recipes);
   const dropdownUstensilsList = document.querySelector(
     ".ustensils .filter-list"
   );
@@ -160,7 +143,7 @@ function createUstensilsDropdown(
       item.textContent = ustensil;
       ulUstensils.appendChild(item);
       // If a filter is selected, this filter is removed from the list
-      if (currentFilter) {
+      if (ustensils.length !== allUstensils.length) {
         let hasFilter = false;
         selectedFiltersContainer.querySelectorAll("span").forEach((element) => {
           if (
@@ -184,4 +167,3 @@ function createUstensilsDropdown(
     dropdownUstensilsList.appendChild(ustensilFail);
   }
 }
-
