@@ -43,7 +43,7 @@ function updateRecipes(e) {
         createCard(filteredRecipesBySearch);
         createDropdownList(filteredRecipesBySearch);
       }
-      recipesTagFilter(currentFilter);
+      recipesTagFilter();
     } else {
       // Delete filter from filtered ingredients, ustensils or appliances Arr, when its removed by user on DOM
       // INGREDIENTS ARR
@@ -84,12 +84,12 @@ function updateRecipes(e) {
       selectedFiltersContainer.appendChild(selectedFilter);
       filteredUstensilsByTag.push(currentFilterText.toLowerCase());
     }
-    recipesTagFilter(currentFilter);
+    recipesTagFilter();
   }
 }
 
 // This function sort the recipes list by ingredients, appliances and ustensils filters tags
-function recipesTagFilter(currentFilter) {
+function recipesTagFilter() {
   cardContainer.innerHTML = "";
   filtersLists.forEach((filtersList) => (filtersList.innerHTML = ""));
 
