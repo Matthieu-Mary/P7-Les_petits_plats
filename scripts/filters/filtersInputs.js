@@ -11,6 +11,7 @@ function filterIngredientsByInput(e) {
   let ingredients;
   if (inputValue.length !== 0) {
     filtersLists[0].innerHTML = "";
+    console.log(filteredRecipesByTags)
     if (
       search.value.length > 2 &&
       selectedFiltersContainer.childElementCount === 0
@@ -28,6 +29,9 @@ function filterIngredientsByInput(e) {
         createIngredientsDropdown(allIngredientsByInput);
       }
     }
+  } else if (inputValue.length === 0 && selectedFiltersContainer.childElementCount !== 0 && search.value.length === 0) {
+    allIngredientsByInput = getIngredients(filteredRecipesByTags);
+    createIngredientsDropdown(allIngredientsByInput);
   } else {
     allIngredientsByInput = getIngredients(filteredRecipesBySearch);
     createIngredientsDropdown(allIngredientsByInput);
@@ -39,8 +43,8 @@ function filterApplianceByInput(e) {
   let appliances;
   if (inputValue.length !== 0) {
     filtersLists[1].innerHTML = "";
+    console.log(filteredRecipesByTags)
     if (search.value.length > 2) {
-      appliances = getAppliances(filteredRecipesBySearch);
     } else if (selectedFiltersContainer.childElementCount !== 0) {
       appliances = getAppliances(filteredRecipesByTags);
     } else {
@@ -79,6 +83,9 @@ function filterUstensilsByInput(e) {
         createUstensilsDropdown(allUstensilsByInput);
       }
     }
+  } else if (inputValue.length === 0 && selectedFiltersContainer.childElementCount !== 0 && search.value.length === 0) {
+    allUstensilsByInput = getUstensils(filteredRecipesByTags);
+    createUstensilsDropdown(allUstensilsByInput);
   } else {
     allUstensilsByInput = getUstensils(filteredRecipesBySearch);
     createUstensilsDropdown(allUstensilsByInput);
