@@ -139,8 +139,4 @@ function recipesTagFilter(currentFilter) {
 }
 
 
-// setInterval(() => {
-//   console.log(filteredRecipesByTags)
-//   console.log(recipes)
-// }, 5000)
 
