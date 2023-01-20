@@ -67,7 +67,7 @@ function updateRecipes(e) {
       if (ustensilIndex !== -1) {
         filteredUstensilsByTag.splice(ustensilIndex, 1);
       }
-      recipesTagFilter(currentFilter);
+      recipesTagFilter();
     }
   } else {
     if (currentList.classList.contains("ingredients")) {
