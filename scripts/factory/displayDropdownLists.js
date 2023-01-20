@@ -80,7 +80,7 @@ function createIngredientsDropdown(ingredients) {
   if (ulIngredients.childElementCount === 0) {
     const ingredientsFail = document.createElement("p");
     ingredientsFail.classList.add("no-more-filter");
-    ingredientsFail.textContent = "Plus aucun filtre appareils disponible ...";
+    ingredientsFail.textContent = "Plus aucun filtre ingredients disponible ...";
     dropdownIngredientsList.removeChild(ulIngredients);
     dropdownIngredientsList.appendChild(ingredientsFail);
   }
