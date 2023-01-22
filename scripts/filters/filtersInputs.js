@@ -55,6 +55,9 @@ function filterApplianceByInput(e) {
         createAppliancesDropdown(allAppliancesByInput);
       }
     }
+  } else if (inputValue.length === 0 && selectedFiltersContainer.childElementCount !== 0 && search.value.length === 0) {
+    allAppliancesByInput = getAppliances(filteredRecipesByTags);
+    createAppliancesDropdown(allAppliancesByInput);
   } else {
     allAppliancesByInput = getAppliances(filteredRecipesBySearch);
     createAppliancesDropdown(allAppliancesByInput);
