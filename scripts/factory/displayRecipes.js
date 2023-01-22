@@ -26,6 +26,7 @@ function createCard(recipes) {
       const cardTimeContainer = document.createElement("div");
       cardTimeContainer.classList.add("card-time-container");
       const cardTimeImage = document.createElement("img");
+      cardTimeImage.setAttribute("alt", "watch");
       cardTimeImage.setAttribute("src", "../assets/images/horloge.svg");
       const cardTime = document.createElement("span");
       cardTime.textContent = `${time} min`;
