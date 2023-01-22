@@ -11,7 +11,6 @@ function filterIngredientsByInput(e) {
   let ingredients;
   if (inputValue.length !== 0) {
     filtersLists[0].innerHTML = "";
-    console.log(filteredRecipesByTags)
     if (
       search.value.length > 2 &&
       selectedFiltersContainer.childElementCount === 0
@@ -43,7 +42,6 @@ function filterApplianceByInput(e) {
   let appliances;
   if (inputValue.length !== 0) {
     filtersLists[1].innerHTML = "";
-    console.log(filteredRecipesByTags)
     if (search.value.length > 2) {
     } else if (selectedFiltersContainer.childElementCount !== 0) {
       appliances = getAppliances(filteredRecipesByTags);
