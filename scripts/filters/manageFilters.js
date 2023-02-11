@@ -19,8 +19,8 @@ function updateRecipes(e) {
   const selectedFilter = document.createElement("span");
   selectedFilter.textContent = currentFilterText;
   const deleteFilterButton = document.createElement("img");
+  deleteFilterButton.setAttribute("src", "assets/images/closeBtn.svg");
   deleteFilterButton.setAttribute("alt", "delete button");
-  deleteFilterButton.setAttribute("src", "/assets/images/closeBtn.svg");
   deleteFilterButton.setAttribute("onclick", "updateRecipes(event)");
   selectedFilter.appendChild(deleteFilterButton);
   cardContainer.innerHTML = "";
